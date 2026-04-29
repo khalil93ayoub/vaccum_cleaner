@@ -30,6 +30,27 @@
             </div>
         </section>
 
+        <!-- Media Section: Video in Middle, Images on Right -->
+        <section id="media" class="media-section">
+            <div class="media-container">
+                <!-- Video in the middle -->
+                <div class="video-container">
+                    <video id="mainVideo" width="100%" height="100%" controls>
+                        <source src="assets/product-video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <!-- 4 Clickable Images on the right -->
+                <div class="images-sidebar">
+                    <img class="thumbnail" src="assets/image1.jpg" alt="Image 1" onclick="changeMedia('assets/image1.jpg', 'image')">
+                    <img class="thumbnail" src="assets/image2.jpg" alt="Image 2" onclick="changeMedia('assets/image2.jpg', 'image')">
+                    <img class="thumbnail" src="assets/image3.jpg" alt="Image 3" onclick="changeMedia('assets/image3.jpg', 'image')">
+                    <img class="thumbnail" src="assets/image4.jpg" alt="Image 4" onclick="changeMedia('assets/image4.jpg', 'image')">
+                </div>
+            </div>
+        </section>
+
         <section id="products" class="products">
             <div class="container">
                 <h2>Featured Products</h2>
@@ -80,5 +101,23 @@
             <p>&copy; 2026 Ecomm. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        function changeMedia(src, type) {
+            const mainVideo = document.getElementById('mainVideo');
+            const videoContainer = mainVideo.parentElement;
+
+            if (type === 'image') {
+                // Replace video with image
+                videoContainer.innerHTML = `<img id="mainImage" src="${src}" alt="Main Image" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">`;
+            } else if (type === 'video') {
+                // Replace with video
+                videoContainer.innerHTML = `<video id="mainVideo" width="100%" height="100%" controls>
+                    <source src="${src}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>`;
+            }
+        }
+    </script>
 </body>
 </html>
