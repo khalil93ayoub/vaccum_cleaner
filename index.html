@@ -13,118 +13,141 @@ body {
     color: #111;
 }
 
-/* HEADER */
+/* TOP BAR */
 header {
-    background: white;
-    padding: 12px 0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
-    z-index: 10;
+    background: white;
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 100;
 }
 
-.logo {
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
+.top-btn {
+    background: #111;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
 }
 
 /* HERO */
 .hero {
-    padding: 30px 15px;
+    padding: 40px 15px;
     text-align: center;
 }
 
 .badge {
-    display: inline-block;
     background: #ff3b30;
     color: white;
-    padding: 5px 12px;
+    display: inline-block;
+    padding: 6px 12px;
     border-radius: 20px;
     font-size: 12px;
     margin-bottom: 10px;
 }
 
-/* MEDIA */
-.media-container {
+/* COUNTDOWN */
+.countdown {
+    font-size: 14px;
+    color: #444;
+    margin: 10px 0 20px;
+}
+
+/* LAYOUT */
+.layout {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 25px;
+    gap: 25px;
     flex-wrap: wrap;
 }
 
-.video-container {
+/* MEDIA */
+.media {
     width: 65%;
     min-width: 300px;
     height: 420px;
-    background: black;
+    background: #000;
     border-radius: 12px;
     overflow: hidden;
 }
 
-.images-sidebar {
+/* THUMBS */
+.thumbs {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.thumbnail {
+.thumb {
     width: 75px;
     height: 75px;
     object-fit: cover;
     border-radius: 8px;
     cursor: pointer;
     transition: 0.2s;
-    border: 2px solid transparent;
 }
 
-.thumbnail:hover {
+.thumb:hover {
     transform: scale(1.05);
-    border-color: #000;
 }
 
-/* PRODUCT BOX */
-.product-box {
-    margin-top: 25px;
-}
-
+/* PRICE AREA */
 .price {
-    font-size: 34px;
+    font-size: 36px;
     font-weight: bold;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
-.subtext {
-    color: #666;
-    font-size: 14px;
-}
-
-/* CTA */
-.buy-button {
+.cta {
     background: #111;
     color: white;
-    padding: 14px 28px;
+    padding: 14px 26px;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 10px;
-}
-
-.buy-button:hover {
-    opacity: 0.85;
 }
 
 /* TRUST */
 .trust {
-    margin-top: 15px;
     font-size: 13px;
     color: #555;
+    margin-top: 10px;
 }
 
-/* STICKY BUY BUTTON (mobile conversion boost) */
-.sticky-cta {
+/* SECTION */
+.section {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 0 15px;
+}
+
+/* TESTIMONIALS */
+.testimonials {
+    display: grid;
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* FAQ */
+.faq-item {
+    background: white;
+    margin-bottom: 10px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+/* STICKY BUY BAR */
+.sticky {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -135,31 +158,20 @@ header {
     display: none;
 }
 
-.sticky-cta button {
+.sticky button {
     width: 100%;
     padding: 14px;
     background: #111;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-    .video-container {
-        width: 100%;
-        height: 300px;
-    }
-
-    .images-sidebar {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .sticky-cta {
-        display: block;
-    }
+    .media { width: 100%; height: 300px; }
+    .thumbs { flex-direction: row; justify-content: center; }
+    .sticky { display: block; }
 }
 </style>
 </head>
@@ -167,50 +179,68 @@ header {
 <body>
 
 <header>
-    <div class="logo">Ecomm</div>
+    <a class="top-btn" href="YOUR_EBAY_LINK_HERE">Buy Now</a>
 </header>
 
 <section class="hero">
 
-    <div class="badge">🔥 Limited Offer - Today Only</div>
-
+    <div class="badge">🔥 Limited Offer</div>
     <h1>Premium Product</h1>
-    <p class="subtext">High quality. Fast delivery. Trusted by customers.</p>
 
-    <div class="media-container">
+    <div class="countdown">⏳ Offer ends soon — limited stock available</div>
 
-        <div class="video-container" id="mainMedia">
+    <div class="layout">
+
+        <div class="media" id="mainMedia">
             <video width="100%" height="100%" controls>
-                <source src="assets/product-video.mp4" type="video/mp4">
+                <source src="assets/product-video.mp4">
             </video>
         </div>
 
-        <div class="images-sidebar">
-            <img class="thumbnail" src="assets/video-thumb.jpg" onclick="showVideo()">
-            <img class="thumbnail" src="assets/image1.jpg" onclick="showImage('assets/image1.jpg')">
-            <img class="thumbnail" src="assets/image2.jpg" onclick="showImage('assets/image2.jpg')">
-            <img class="thumbnail" src="assets/image3.jpg" onclick="showImage('assets/image3.jpg')">
-            <img class="thumbnail" src="assets/image4.jpg" onclick="showImage('assets/image4.jpg')">
+        <div class="thumbs">
+            <img class="thumb" src="assets/video-thumb.jpg" onclick="showVideo()">
+            <img class="thumb" src="assets/image1.jpg" onclick="showImage('image1.jpg')">
+            <img class="thumb" src="assets/image2.jpg" onclick="showImage('image2.jpg')">
+            <img class="thumb" src="assets/image3.jpg" onclick="showImage('image3.jpg')">
+            <img class="thumb" src="assets/image4.jpg" onclick="showImage('image4.jpg')">
         </div>
 
     </div>
 
-    <div class="product-box">
-        <div class="price">24,99 €</div>
+    <div class="price">24,99 €</div>
 
-        <a href="YOUR_EBAY_LINK_HERE" target="_blank">
-            <button class="buy-button">Buy Now on eBay</button>
-        </a>
+    <a href="YOUR_EBAY_LINK_HERE">
+        <button class="cta">Buy Now on eBay</button>
+    </a>
 
-        <div class="trust">
-            ✔ Secure checkout &nbsp; ✔ Fast shipping &nbsp; ✔ Money-back guarantee
-        </div>
+    <div class="trust">
+        ✔ Secure checkout &nbsp; ✔ Fast shipping &nbsp; ✔ Money-back guarantee
     </div>
 
 </section>
 
-<!-- Sticky CTA for mobile -->
-<div class="sticky-cta">
+<!-- TESTIMONIALS -->
+<div class="section">
+    <h2>What customers say</h2>
+
+    <div class="testimonials">
+        <div class="card">“Amazing quality, totally worth it.”</div>
+        <div class="card">“Fast delivery and great experience.”</div>
+        <div class="card">“Exactly as described. Highly recommend.”</div>
+    </div>
+</div>
+
+<!-- FAQ -->
+<div class="section">
+    <h2>FAQ</h2>
+
+    <div class="faq-item">Is shipping fast? — Yes, 2–5 days.</div>
+    <div class="faq-item">Is it refundable? — Yes, 30-day guarantee.</div>
+    <div class="faq-item">Where do I buy? — On eBay via button.</div>
+</div>
+
+<!-- STICKY CTA -->
+<div class="sticky">
     <a href="YOUR_EBAY_LINK_HERE">
         <button>Buy Now - 24,99 €</button>
     </a>
@@ -219,13 +249,13 @@ header {
 <script>
 function showImage(src) {
     document.getElementById('mainMedia').innerHTML =
-        `<img src="${src}" style="width:100%; height:100%; object-fit:contain;">`;
+        `<img src="assets/${src}" style="width:100%;height:100%;object-fit:contain;">`;
 }
 
 function showVideo() {
     document.getElementById('mainMedia').innerHTML =
         `<video width="100%" height="100%" controls>
-            <source src="assets/product-video.mp4" type="video/mp4">
+            <source src="assets/product-video.mp4">
         </video>`;
 }
 </script>
