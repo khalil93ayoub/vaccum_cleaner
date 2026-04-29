@@ -1,123 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecommerce Landing Page</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Product</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f6f6f6;
+    color: #111;
+}
+
+/* HEADER */
+header {
+    background: white;
+    padding: 12px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* HERO */
+.hero {
+    padding: 30px 15px;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    background: #ff3b30;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+/* MEDIA */
+.media-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.video-container {
+    width: 65%;
+    min-width: 300px;
+    height: 420px;
+    background: black;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.images-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.thumbnail {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 2px solid transparent;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+    border-color: #000;
+}
+
+/* PRODUCT BOX */
+.product-box {
+    margin-top: 25px;
+}
+
+.price {
+    font-size: 34px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.subtext {
+    color: #666;
+    font-size: 14px;
+}
+
+/* CTA */
+.buy-button {
+    background: #111;
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.buy-button:hover {
+    opacity: 0.85;
+}
+
+/* TRUST */
+.trust {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #555;
+}
+
+/* STICKY BUY BUTTON (mobile conversion boost) */
+.sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 12px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.sticky-cta button {
+    width: 100%;
+    padding: 14px;
+    background: #111;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .video-container {
+        width: 100%;
+        height: 300px;
+    }
+
+    .images-sidebar {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .sticky-cta {
+        display: block;
+    }
+}
+</style>
 </head>
+
 <body>
-    <header>
-        <nav>
-            <div class="container">
-                <div class="logo">Ecomm</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="container">
-                <h1>Welcome to Your Store</h1>
-                <p>Discover amazing products at unbeatable prices</p>
-                <button class="cta-button">Shop Now</button>
-            </div>
-        </section>
+<header>
+    <div class="logo">Ecomm</div>
+</header>
 
-        <!-- Media Section: Video in Middle, Images on Right -->
-        <section id="media" class="media-section">
-            <div class="media-container">
-                <!-- Video in the middle -->
-                <div class="video-container">
-                    <video id="mainVideo" width="100%" height="100%" controls>
-                        <source src="assets/product-video.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+<section class="hero">
 
-                <!-- 4 Clickable Images on the right -->
-                <div class="images-sidebar">
-                    <img class="thumbnail" src="assets/image1.jpg" alt="Image 1" onclick="changeMedia('assets/image1.jpg', 'image')">
-                    <img class="thumbnail" src="assets/image2.jpg" alt="Image 2" onclick="changeMedia('assets/image2.jpg', 'image')">
-                    <img class="thumbnail" src="assets/image3.jpg" alt="Image 3" onclick="changeMedia('assets/image3.jpg', 'image')">
-                    <img class="thumbnail" src="assets/image4.jpg" alt="Image 4" onclick="changeMedia('assets/image4.jpg', 'image')">
-                </div>
-            </div>
-        </section>
+    <div class="badge">🔥 Limited Offer - Today Only</div>
 
-        <section id="products" class="products">
-            <div class="container">
-                <h2>Featured Products</h2>
-                <div class="product-grid">
-                    <div class="product-card">
-                        <img src="assets/product1.jpg" alt="Product 1">
-                        <h3>Product 1</h3>
-                        <p class="price">$29.99</p>
-                        <button>Add to Cart</button>
-                    </div>
-                    <div class="product-card">
-                        <img src="assets/product2.jpg" alt="Product 2">
-                        <h3>Product 2</h3>
-                        <p class="price">$39.99</p>
-                        <button>Add to Cart</button>
-                    </div>
-                    <div class="product-card">
-                        <img src="assets/product3.jpg" alt="Product 3">
-                        <h3>Product 3</h3>
-                        <p class="price">$49.99</p>
-                        <button>Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <h1>Premium Product</h1>
+    <p class="subtext">High quality. Fast delivery. Trusted by customers.</p>
 
-        <section id="about" class="about">
-            <div class="container">
-                <h2>About Us</h2>
-                <p>We're committed to providing the best shopping experience with quality products and excellent customer service.</p>
-            </div>
-        </section>
+    <div class="media-container">
 
-        <section id="contact" class="contact">
-            <div class="container">
-                <h2>Contact Us</h2>
-                <form>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
-                    <button type="submit">Send Message</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Ecomm. All rights reserved.</p>
+        <div class="video-container" id="mainMedia">
+            <video width="100%" height="100%" controls>
+                <source src="assets/product-video.mp4" type="video/mp4">
+            </video>
         </div>
-    </footer>
 
-    <script>
-        function changeMedia(src, type) {
-            const mainVideo = document.getElementById('mainVideo');
-            const videoContainer = mainVideo.parentElement;
+        <div class="images-sidebar">
+            <img class="thumbnail" src="assets/video-thumb.jpg" onclick="showVideo()">
+            <img class="thumbnail" src="assets/image1.jpg" onclick="showImage('assets/image1.jpg')">
+            <img class="thumbnail" src="assets/image2.jpg" onclick="showImage('assets/image2.jpg')">
+            <img class="thumbnail" src="assets/image3.jpg" onclick="showImage('assets/image3.jpg')">
+            <img class="thumbnail" src="assets/image4.jpg" onclick="showImage('assets/image4.jpg')">
+        </div>
 
-            if (type === 'image') {
-                // Replace video with image
-                videoContainer.innerHTML = `<img id="mainImage" src="${src}" alt="Main Image" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;">`;
-            } else if (type === 'video') {
-                // Replace with video
-                videoContainer.innerHTML = `<video id="mainVideo" width="100%" height="100%" controls>
-                    <source src="${src}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>`;
-            }
-        }
-    </script>
+    </div>
+
+    <div class="product-box">
+        <div class="price">24,99 €</div>
+
+        <a href="YOUR_EBAY_LINK_HERE" target="_blank">
+            <button class="buy-button">Buy Now on eBay</button>
+        </a>
+
+        <div class="trust">
+            ✔ Secure checkout &nbsp; ✔ Fast shipping &nbsp; ✔ Money-back guarantee
+        </div>
+    </div>
+
+</section>
+
+<!-- Sticky CTA for mobile -->
+<div class="sticky-cta">
+    <a href="YOUR_EBAY_LINK_HERE">
+        <button>Buy Now - 24,99 €</button>
+    </a>
+</div>
+
+<script>
+function showImage(src) {
+    document.getElementById('mainMedia').innerHTML =
+        `<img src="${src}" style="width:100%; height:100%; object-fit:contain;">`;
+}
+
+function showVideo() {
+    document.getElementById('mainMedia').innerHTML =
+        `<video width="100%" height="100%" controls>
+            <source src="assets/product-video.mp4" type="video/mp4">
+        </video>`;
+}
+</script>
+
 </body>
 </html>
