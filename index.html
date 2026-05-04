@@ -31,12 +31,12 @@ header {
 
 /* LAYOUT */
 .container {
+
   max-width: 1100px;
+
   margin: auto;
+
   padding: 30px 20px;
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 30px;
 }
 
 .media {
@@ -60,9 +60,7 @@ header {
 
 /* PANEL */
 .panel {
-  border: 1px solid #eee;
-  padding: 20px;
-  border-radius: 10px;
+  margin-top: 20px;
 }
 
 .price {
@@ -91,7 +89,7 @@ header {
 
 <header>
   <div>🔥 Limited Offer</div>
-  <button onclick="handleBuy()" class="top-btn">Buy Now</button>
+  <button id="buyBtnTop" onclick="handleBuy()" class="top-btn">Buy Now</button>
 </header>
 
 <div class="container">
@@ -147,16 +145,14 @@ const db = firebase.firestore();
 
 <!-- BUY LOGIC -->
 <script>
+<script>
 async function handleBuy() {
   const ref = db.collection("product").doc("vacuum");
 
   try {
     const doc = await ref.get();
 
-    if (!doc.exists) {
-      alert("Error");
-      return;
-    }
+    if (!doc.exists) return alert("Error");
 
     let stock = doc.data().stock;
 
@@ -165,9 +161,13 @@ async function handleBuy() {
       return;
     }
 
-    await ref.update({ stock: stock - 1 });
-
+    // 🚀 FIRST go to Stripe
     window.location.href = "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
+
+    // THEN reduce stock slightly delayed
+    setTimeout(async () => {
+      await ref.update({ stock: stock - 1 });
+    }, 1500);
 
   } catch (e) {
     alert("ERROR: " + e.message);
@@ -184,17 +184,28 @@ ref.onSnapshot((doc) => {
 
   const stockText = document.getElementById("stockText");
   const btn = document.getElementById("buyBtn");
+  const btnTop = document.getElementById("buyBtnTop");
 
   if (stock > 0) {
     stockText.innerText = `🔥 Only ${stock} left`;
+
     btn.disabled = false;
     btn.innerText = "Buy Now";
     btn.style.opacity = "1";
+
+    btnTop.disabled = false;
+    btnTop.style.opacity = "1";
+
   } else {
     stockText.innerText = "❌ Sold Out";
+
     btn.disabled = true;
     btn.innerText = "Sold Out";
     btn.style.opacity = "0.5";
+
+    btnTop.disabled = true;
+    btnTop.innerText = "Sold Out";
+    btnTop.style.opacity = "0.5";
   }
 });
 </script>
