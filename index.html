@@ -86,6 +86,8 @@ header {
     margin: 10px 0;
 }
 
+<p id="stockText" style="font-weight:600;"></p>
+
 .cta {
     width: 100%;
     padding: 14px;
@@ -201,7 +203,7 @@ header {
 
     <br>
 
-    <a <button onclick="handleBuy()" class="top-btn">Buy Now</button>
+    <a <button id="buyBtn" onclick="handleBuy()" class="cta">Buy Now</button>
       <button style="width:100%;padding:14px;background:#111;color:white;border:none;border-radius:8px;font-size:16px;">
         Continue to Payment
       </button>
@@ -297,6 +299,29 @@ async function handleBuy() {
     alert("ERROR: " + e.message);
   }
 }
+</script>
+
+<script>
+const ref = db.collection("product").doc("vacuum");
+
+ref.onSnapshot((doc) => {
+  let stock = doc.data().stock;
+
+  const stockText = document.getElementById("stockText");
+  const btn = document.getElementById("buyBtn");
+
+  if (stock > 0) {
+    stockText.innerText = `🔥 Only ${stock} left`;
+    btn.disabled = false;
+    btn.innerText = "Buy Now";
+    btn.style.opacity = "1";
+  } else {
+    stockText.innerText = "❌ Sold Out";
+    btn.disabled = true;
+    btn.innerText = "Sold Out";
+    btn.style.opacity = "0.5";
+  }
+});
 </script>
 
 </body>
