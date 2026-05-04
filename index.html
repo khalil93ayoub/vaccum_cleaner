@@ -253,5 +253,46 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 </script>
 
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "PASTE_HERE",
+  authDomain: "PASTE_HERE",
+  projectId: "PASTE_HERE",
+  storageBucket: "PASTE_HERE",
+  messagingSenderId: "PASTE_HERE",
+  appId: "PASTE_HERE"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+</script>
+
+<script>
+async function handleBuy() {
+  const ref = db.collection("product").doc("vacuum");
+
+  try {
+    await db.runTransaction(async (transaction) => {
+      const doc = await transaction.get(ref);
+
+      if (!doc.exists) return alert("Error");
+
+      let stock = doc.data().stock;
+
+      if (stock <= 0) return alert("Sold Out");
+
+      transaction.update(ref, { stock: stock - 1 });
+
+      window.open("https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00", "_blank");
+    });
+  } catch {
+    alert("Try again");
+  }
+}
+</script>
+
 </body>
 </html>
