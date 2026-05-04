@@ -275,21 +275,26 @@ async function handleBuy() {
   const ref = db.collection("product").doc("vacuum");
 
   try {
-    await db.runTransaction(async (transaction) => {
-      const doc = await transaction.get(ref);
+    const doc = await ref.get();
 
-      if (!doc.exists) return alert("Error");
+    if (!doc.exists) {
+      alert("Product not found");
+      return;
+    }
 
-      let stock = doc.data().stock;
+    let stock = doc.data().stock;
 
-      if (stock <= 0) return alert("Sold Out");
+    if (stock <= 0) {
+      alert("Sold Out");
+      return;
+    }
 
-      transaction.update(ref, { stock: stock - 1 });
+    await ref.update({ stock: stock - 1 });
 
-      window.open("https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00", "_blank");
-    });
-  } catch {
-    alert("Try again");
+    window.location.href = "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
+
+  } catch (e) {
+    alert("ERROR: " + e.message);
   }
 }
 </script>
