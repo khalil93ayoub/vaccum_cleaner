@@ -3,130 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Product</title>
+<title>Vacuum Cleaner</title>
 
 <style>
 body {
-    margin: 0;
-    font-family: -apple-system, Arial, sans-serif;
-    background: #fff;
-    color: #111;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
 }
 
 /* HEADER */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 20px;
-    border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  border-bottom: 1px solid #eee;
 }
 
-/* BADGE */
-.badge {
-    background: #ff3b30;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 12px;
-    animation: pulse 1.5s infinite;
+.top-btn {
+  background: #111;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
+/* LAYOUT */
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 20px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 30px;
 }
 
-/* HERO */
-.hero {
-    max-width: 1100px;
-    margin: auto;
-    padding: 30px 20px;
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 30px;
-}
-
-/* MEDIA */
 .media {
-    width: 100%;
-    height: 420px;
-    background: black;
-    border-radius: 12px;
-    overflow: hidden;
+  width: 100%;
+  height: 400px;
+  background: black;
 }
 
-/* THUMBS */
 .thumbs {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .thumb {
-    width: 70px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 8px;
-    cursor: pointer;
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 /* PANEL */
 .panel {
-    background: #fafafa;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #eee;
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .price {
-    font-size: 36px;
-    font-weight: bold;
-    margin: 10px 0;
+  font-size: 32px;
+  font-weight: bold;
 }
-
-<p id="stockText" style="font-weight:600;"></p>
 
 .cta {
-    width: 100%;
-    padding: 14px;
-    background: #111;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
+  width: 100%;
+  padding: 14px;
+  background: #111;
+  color: white;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
-/* TRUST */
-.trust {
-    font-size: 14px;
-    color: #555;
-    margin-top: 10px;
-    line-height: 1.6;
-}
-
-/* POPUP */
-#checkoutPopup {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-    .hero {
-        grid-template-columns: 1fr;
-    }
-    .media {
-        height: 300px;
-    }
+#stockText {
+  margin-top: 8px;
+  font-weight: 600;
 }
 </style>
 </head>
@@ -134,110 +90,44 @@ header {
 <body>
 
 <header>
-    <div class="badge">🔥 Limited Offer</div>
-    <button onclick="openPopup()" style="background:#111;color:white;padding:8px 14px;border:none;border-radius:6px;">
-        Buy Now
-    </button>
+  <div>🔥 Limited Offer</div>
+  <button onclick="handleBuy()" class="top-btn">Buy Now</button>
 </header>
 
-<section class="hero">
+<div class="container">
 
-<!-- LEFT -->
-<div>
+  <!-- LEFT -->
+  <div>
     <div class="media" id="mainMedia">
-        <video width="100%" height="100%" controls>
-            <source src="assets/product-video.mp4">
-        </video>
+      <video width="100%" height="100%" controls>
+        <source src="assets/product-video.mp4">
+      </video>
     </div>
 
     <div class="thumbs">
-        <img class="thumb" src="assets/video-thumb.jpg" onclick="showVideo()">
-        <img class="thumb" src="assets/image1.jpg" onclick="showImage('assets/image1.jpg')">
-        <img class="thumb" src="assets/image2.jpg" onclick="showImage('assets/image2.jpg')">
-        <img class="thumb" src="assets/image3.jpg" onclick="showImage('assets/image3.jpg')">
-        <img class="thumb" src="assets/image4.jpg" onclick="showImage('assets/image4.jpg')">
+      <img class="thumb" src="assets/image1.jpg" onclick="showImage('assets/image1.jpg')">
+      <img class="thumb" src="assets/image2.jpg" onclick="showImage('assets/image2.jpg')">
+      <img class="thumb" src="assets/image3.jpg" onclick="showImage('assets/image3.jpg')">
+      <img class="thumb" src="assets/image4.jpg" onclick="showImage('assets/image4.jpg')">
     </div>
-</div>
+  </div>
 
-<!-- RIGHT -->
-<div class="panel">
-
-    <h1>Premium Product</h1>
-
-    <p style="color:#555;">
-        Free delivery • Secure checkout • Ships within 24h
-    </p>
+  <!-- RIGHT -->
+  <div class="panel">
+    <h1>Premium Vacuum Cleaner</h1>
 
     <div class="price">24,99 €</div>
 
-    <button onclick="openPopup()" class="cta">
-        Buy Now
-    </button>
+    <p id="stockText"></p>
 
-    <div class="trust">
-        ✔ Secure payment via Stripe<br>
-        ✔ Free delivery<br>
-        ✔ Tax included<br>
-        ✔ 30-day guarantee
-    </div>
+    <button id="buyBtn" onclick="handleBuy()" class="cta">Buy Now</button>
 
-</div>
-
-</section>
-
-<!-- POPUP -->
-<div id="checkoutPopup">
-  <div style="background:white;padding:25px;border-radius:12px;width:90%;max-width:400px;text-align:center;">
-
-    <h2>Secure Checkout</h2>
-
-    <p style="color:#555;">
-      You will be redirected to our secure payment page.
-    </p>
-
-    <ul style="text-align:left;font-size:14px;color:#444;">
-      <li>✔ Secure payment via Stripe</li>
-      <li>✔ Free delivery</li>
-      <li>✔ Tax included</li>
-    </ul>
-
-    <br>
-
-    <a <button onclick="handleBuy()" class="top-btn">Buy Now</button>
-      <button style="width:100%;padding:14px;background:#111;color:white;border:none;border-radius:8px;font-size:16px;">
-        Continue to Payment
-      </button>
-    </a>
-
-    <p onclick="closePopup()" style="margin-top:10px;cursor:pointer;color:#888;">
-      Cancel
-    </p>
-
+    <p>✔ Secure payment<br>✔ Free delivery<br>✔ Tax included</p>
   </div>
+
 </div>
 
-<script>
-function showImage(src) {
-    document.getElementById('mainMedia').innerHTML =
-        `<img src="${src}" style="width:100%;height:100%;object-fit:contain;">`;
-}
-
-function showVideo() {
-    document.getElementById('mainMedia').innerHTML =
-        `<video width="100%" height="100%" controls>
-            <source src="assets/product-video.mp4">
-        </video>`;
-}
-
-function openPopup() {
-    document.getElementById('checkoutPopup').style.display = 'flex';
-}
-
-function closePopup() {
-    document.getElementById('checkoutPopup').style.display = 'none';
-}
-</script>
-
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
@@ -255,23 +145,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 </script>
 
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "PASTE_HERE",
-  authDomain: "PASTE_HERE",
-  projectId: "PASTE_HERE",
-  storageBucket: "PASTE_HERE",
-  messagingSenderId: "PASTE_HERE",
-  appId: "PASTE_HERE"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-</script>
-
+<!-- BUY LOGIC -->
 <script>
 async function handleBuy() {
   const ref = db.collection("product").doc("vacuum");
@@ -280,7 +154,7 @@ async function handleBuy() {
     const doc = await ref.get();
 
     if (!doc.exists) {
-      alert("Product not found");
+      alert("Error");
       return;
     }
 
@@ -301,6 +175,7 @@ async function handleBuy() {
 }
 </script>
 
+<!-- LIVE STOCK -->
 <script>
 const ref = db.collection("product").doc("vacuum");
 
@@ -322,6 +197,14 @@ ref.onSnapshot((doc) => {
     btn.style.opacity = "0.5";
   }
 });
+</script>
+
+<!-- MEDIA SWITCH -->
+<script>
+function showImage(src) {
+  document.getElementById("mainMedia").innerHTML =
+    `<img src="${src}" style="width:100%;height:100%;object-fit:contain;">`;
+}
 </script>
 
 </body>
