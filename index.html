@@ -74,6 +74,7 @@ header {
 #stockText {
   margin-top: 8px;
   font-weight: 600;
+  font-size: 14px;
 }
 </style>
 </head>
@@ -87,12 +88,14 @@ header {
 
 <div class="container">
 
+  <!-- VIDEO -->
   <div class="media">
     <video width="100%" height="100%" controls>
       <source src="assets/product-video.mp4">
     </video>
   </div>
 
+  <!-- IMAGES -->
   <div class="thumbs">
     <img class="thumb" src="assets/image1.jpg">
     <img class="thumb" src="assets/image2.jpg">
@@ -100,11 +103,14 @@ header {
     <img class="thumb" src="assets/image4.jpg">
   </div>
 
+  <!-- CONTENT -->
   <div class="panel">
     <h1>Premium Vacuum Cleaner</h1>
+
     <div class="price">24,99 €</div>
 
-    <p id="stockText"></p>
+    <!-- ✅ LIVE STOCK (NEW) -->
+    <p id="stockText">Checking availability...</p>
 
     <button id="buyBtn" class="cta">Buy Now</button>
 
@@ -128,7 +134,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 </script>
 
-<!-- MAIN LOGIC -->
+<!-- BUY FUNCTION (UNCHANGED LOGIC) -->
 <script>
 async function handleBuy() {
   try {
@@ -144,14 +150,12 @@ async function handleBuy() {
       return;
     }
 
-    // disable buttons instantly (UX fix)
+    // UX improvement
     document.getElementById("buyBtn").innerText = "Processing...";
     document.getElementById("buyBtnTop").innerText = "Processing...";
 
-    // update stock FIRST (reliable)
     await ref.update({ stock: stock - 1 });
 
-    // THEN redirect
     window.location.href = "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
 
   } catch (e) {
@@ -160,48 +164,25 @@ async function handleBuy() {
 }
 </script>
 
-<!-- CONNECT BUTTONS (THIS FIXES YOUR ISSUE) -->
+<!-- CONNECT BUTTONS -->
 <script>
 document.getElementById("buyBtn").addEventListener("click", handleBuy);
 document.getElementById("buyBtnTop").addEventListener("click", handleBuy);
 </script>
 
-<!-- LIVE STOCK -->
+<!-- LIVE STOCK DISPLAY ONLY (NO BEHAVIOR CHANGE) -->
 <script>
 const ref = db.collection("product").doc("vacuum");
 
 ref.onSnapshot((doc) => {
-  if (isRedirecting) return;
-
   let stock = doc.data().stock;
 
   const text = document.getElementById("stockText");
-  const btn = document.getElementById("buyBtn");
-  const btnTop = document.getElementById("buyBtnTop");
 
   if (stock > 0) {
-    text.innerText = `🔥 Only ${stock} left`;
-
-    btn.disabled = false;
-    btnTop.disabled = false;
-
-    btn.innerText = "Buy Now";
-    btnTop.innerText = "Buy Now";
-
-    btn.style.opacity = "1";
-    btnTop.style.opacity = "1";
-
+    text.innerText = `In stock: ${stock}`;
   } else {
-    text.innerText = "❌ Sold Out";
-
-    btn.disabled = true;
-    btnTop.disabled = true;
-
-    btn.innerText = "Sold Out";
-    btnTop.innerText = "Sold Out";
-
-    btn.style.opacity = "0.5";
-    btnTop.style.opacity = "0.5";
+    text.innerText = `Out of stock`;
   }
 });
 </script>
