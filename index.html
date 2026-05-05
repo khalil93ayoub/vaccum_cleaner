@@ -130,11 +130,7 @@ const db = firebase.firestore();
 
 <!-- MAIN LOGIC -->
 <script>
-let isRedirecting = false;
-
 async function handleBuy() {
-  if (isRedirecting) return;
-
   try {
     const ref = db.collection("product").doc("vacuum");
     const doc = await ref.get();
@@ -148,19 +144,15 @@ async function handleBuy() {
       return;
     }
 
-    isRedirecting = true;
+    // disable buttons instantly (UX fix)
+    document.getElementById("buyBtn").innerText = "Processing...";
+    document.getElementById("buyBtnTop").innerText = "Processing...";
 
-    // redirect immediately
+    // update stock FIRST (reliable)
+    await ref.update({ stock: stock - 1 });
+
+    // THEN redirect
     window.location.href = "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
-
-    // update stock AFTER redirect
-    setTimeout(async () => {
-      try {
-        await ref.update({ stock: stock - 1 });
-      } catch (e) {
-        console.log(e);
-      }
-    }, 1500);
 
   } catch (e) {
     alert("ERROR: " + e.message);
