@@ -9,7 +9,6 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #fff;
 }
 
 /* HEADER */
@@ -31,12 +30,9 @@ header {
 
 /* LAYOUT */
 .container {
-
-  max-width: 1100px;
-
+  max-width: 900px;
   margin: auto;
-
-  padding: 30px 20px;
+  padding: 20px;
 }
 
 .media {
@@ -58,7 +54,6 @@ header {
   cursor: pointer;
 }
 
-/* PANEL */
 .panel {
   margin-top: 20px;
 }
@@ -89,28 +84,27 @@ header {
 
 <header>
   <div>🔥 Limited Offer</div>
-  <button id="buyBtnTop" onclick="handleBuy()" class="top-btn">Buy Now</button>
+  <button id="buyBtnTop" class="top-btn">Buy Now</button>
 </header>
 
 <div class="container">
 
-  <!-- LEFT -->
-  <div>
-    <div class="media" id="mainMedia">
-      <video width="100%" height="100%" controls>
-        <source src="assets/product-video.mp4">
-      </video>
-    </div>
-
-    <div class="thumbs">
-      <img class="thumb" src="assets/image1.jpg" onclick="showImage('assets/image1.jpg')">
-      <img class="thumb" src="assets/image2.jpg" onclick="showImage('assets/image2.jpg')">
-      <img class="thumb" src="assets/image3.jpg" onclick="showImage('assets/image3.jpg')">
-      <img class="thumb" src="assets/image4.jpg" onclick="showImage('assets/image4.jpg')">
-    </div>
+  <!-- VIDEO -->
+  <div class="media" id="mainMedia">
+    <video width="100%" height="100%" controls>
+      <source src="assets/product-video.mp4">
+    </video>
   </div>
 
-  <!-- RIGHT -->
+  <!-- IMAGES -->
+  <div class="thumbs">
+    <img class="thumb" src="assets/image1.jpg">
+    <img class="thumb" src="assets/image2.jpg">
+    <img class="thumb" src="assets/image3.jpg">
+    <img class="thumb" src="assets/image4.jpg">
+  </div>
+
+  <!-- CONTENT -->
   <div class="panel">
     <h1>Premium Vacuum Cleaner</h1>
 
@@ -118,14 +112,14 @@ header {
 
     <p id="stockText"></p>
 
-    <button id="buyBtn" onclick="handleBuy()" class="cta">Buy Now</button>
+    <button id="buyBtn" class="cta">Buy Now</button>
 
     <p>✔ Secure payment<br>✔ Free delivery<br>✔ Tax included</p>
   </div>
 
 </div>
 
-<!-- Firebase -->
+<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
@@ -133,23 +127,18 @@ header {
 const firebaseConfig = {
   apiKey: "AIzaSyDBYtMrRsnfHS8QMz8UgMjVmrBJ92siSbU",
   authDomain: "vacuum-cleaner-e8857.firebaseapp.com",
-  projectId: "vacuum-cleaner-e8857",
-  storageBucket: "vacuum-cleaner-e8857.firebasestorage.app",
-  messagingSenderId: "21864775088",
-  appId: "1:21864775088:web:5d7b55dd9f6af7c7eaea75"
+  projectId: "vacuum-cleaner-e8857"
 };
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 </script>
 
-<!-- BUY LOGIC -->
-<script>
+<!-- BUY LOGIC (FIXED + STABLE) -->
 <script>
 async function handleBuy() {
-  const ref = db.collection("product").doc("vacuum");
-
   try {
+    const ref = db.collection("product").doc("vacuum");
     const doc = await ref.get();
 
     if (!doc.exists) return alert("Error");
@@ -161,18 +150,22 @@ async function handleBuy() {
       return;
     }
 
-    // 🚀 FIRST go to Stripe
-    window.location.href = "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
+    // reduce stock
+    await ref.update({ stock: stock - 1 });
 
-    // THEN reduce stock slightly delayed
-    setTimeout(async () => {
-      await ref.update({ stock: stock - 1 });
-    }, 1500);
+    // redirect
+    window.location.href = "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
 
   } catch (e) {
     alert("ERROR: " + e.message);
   }
 }
+</script>
+
+<!-- CONNECT BUTTONS (THIS WAS YOUR BUG) -->
+<script>
+document.getElementById("buyBtn").addEventListener("click", handleBuy);
+document.getElementById("buyBtnTop").addEventListener("click", handleBuy);
 </script>
 
 <!-- LIVE STOCK -->
@@ -182,40 +175,32 @@ const ref = db.collection("product").doc("vacuum");
 ref.onSnapshot((doc) => {
   let stock = doc.data().stock;
 
-  const stockText = document.getElementById("stockText");
+  const text = document.getElementById("stockText");
   const btn = document.getElementById("buyBtn");
   const btnTop = document.getElementById("buyBtnTop");
 
   if (stock > 0) {
-    stockText.innerText = `🔥 Only ${stock} left`;
+    text.innerText = `🔥 Only ${stock} left`;
 
     btn.disabled = false;
-    btn.innerText = "Buy Now";
-    btn.style.opacity = "1";
-
     btnTop.disabled = false;
+
+    btn.style.opacity = "1";
     btnTop.style.opacity = "1";
 
   } else {
-    stockText.innerText = "❌ Sold Out";
+    text.innerText = "❌ Sold Out";
 
     btn.disabled = true;
-    btn.innerText = "Sold Out";
-    btn.style.opacity = "0.5";
-
     btnTop.disabled = true;
+
+    btn.innerText = "Sold Out";
     btnTop.innerText = "Sold Out";
+
+    btn.style.opacity = "0.5";
     btnTop.style.opacity = "0.5";
   }
 });
-</script>
-
-<!-- MEDIA SWITCH -->
-<script>
-function showImage(src) {
-  document.getElementById("mainMedia").innerHTML =
-    `<img src="${src}" style="width:100%;height:100%;object-fit:contain;">`;
-}
 </script>
 
 </body>
