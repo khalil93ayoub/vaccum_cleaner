@@ -72,24 +72,24 @@ header {
   display: flex;
   gap: 12px;
   margin-top: 15px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 5px;
+}
+
+.thumbs::-webkit-scrollbar {
+  display: none;
 }
 
 .thumb {
+  flex: 0 0 auto;
   width: 75px;
   height: 75px;
   border-radius: 10px;
   object-fit: cover;
   cursor: pointer;
   border: 2px solid transparent;
-  transition: 0.2s;
-}
-
-.thumb:hover {
-  transform: scale(1.05);
-}
-
-.thumb.active {
-  border: 2px solid #111;
+  scroll-snap-align: start;
 }
 
 /* CONTENT */
