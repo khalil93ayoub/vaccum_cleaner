@@ -136,12 +136,20 @@ const db = firebase.firestore();
 
 <!-- BUY LOGIC (FIXED + STABLE) -->
 <script>
+let isRedirecting = false;
+
+// BUY FUNCTION
 async function handleBuy() {
+  if (isRedirecting) return;
+
   try {
     const ref = db.collection("product").doc("vacuum");
     const doc = await ref.get();
 
-    if (!doc.exists) return alert("Error");
+    if (!doc.exists) {
+      alert("Error");
+      return;
+    }
 
     let stock = doc.data().stock;
 
@@ -150,29 +158,32 @@ async function handleBuy() {
       return;
     }
 
-    // reduce stock
-    await ref.update({ stock: stock - 1 });
+    isRedirecting = true;
 
-    // redirect
+    // 👉 Redirect FIRST (no UI change)
     window.location.href = "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
+
+    // 👉 Update stock AFTER redirect starts
+    setTimeout(async () => {
+      try {
+        await ref.update({ stock: stock - 1 });
+      } catch (e) {
+        console.log("Stock update failed:", e);
+      }
+    }, 2000);
 
   } catch (e) {
     alert("ERROR: " + e.message);
   }
 }
-</script>
 
-<!-- CONNECT BUTTONS (THIS WAS YOUR BUG) -->
-<script>
-document.getElementById("buyBtn").addEventListener("click", handleBuy);
-document.getElementById("buyBtnTop").addEventListener("click", handleBuy);
-</script>
 
-<!-- LIVE STOCK -->
-<script>
+// LIVE STOCK (NO FLICKER)
 const ref = db.collection("product").doc("vacuum");
 
 ref.onSnapshot((doc) => {
+  if (isRedirecting) return; // 🔥 prevents "Sold Out" flash
+
   let stock = doc.data().stock;
 
   const text = document.getElementById("stockText");
@@ -184,6 +195,9 @@ ref.onSnapshot((doc) => {
 
     btn.disabled = false;
     btnTop.disabled = false;
+
+    btn.innerText = "Buy Now";
+    btnTop.innerText = "Buy Now";
 
     btn.style.opacity = "1";
     btnTop.style.opacity = "1";
