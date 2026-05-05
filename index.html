@@ -8,78 +8,117 @@
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fff;
+  color: #111;
 }
 
 header {
   display: flex;
   justify-content: space-between;
-  padding: 12px 20px;
+  padding: 16px 24px;
   border-bottom: 1px solid #eee;
+  font-weight: 500;
 }
 
 .top-btn {
   background: #111;
   color: white;
-  padding: 10px 16px;
+  padding: 10px 18px;
+  border-radius: 999px;
   border: none;
-  border-radius: 6px;
   cursor: pointer;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: auto;
-  padding: 20px;
+  padding: 30px 20px;
 }
 
+/* MEDIA */
 .media {
   width: 100%;
-  height: 400px;
-  background: black;
+  height: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
 }
 
+.media img,
+.media video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.4s ease;
+}
+
+/* PLAY BUTTON */
+.play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 30px;
+  padding: 16px 20px;
+  border-radius: 50%;
+}
+
+/* THUMBS */
 .thumbs {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 12px;
+  margin-top: 15px;
 }
 
 .thumb {
-  width: 70px;
-  height: 70px;
+  width: 75px;
+  height: 75px;
+  border-radius: 10px;
   object-fit: cover;
   cursor: pointer;
   border: 2px solid transparent;
+  transition: 0.2s;
 }
 
 .thumb:hover {
+  transform: scale(1.05);
+}
+
+.thumb.active {
   border: 2px solid #111;
 }
 
+/* CONTENT */
 .panel {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .price {
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .cta {
   width: 100%;
-  padding: 14px;
+  padding: 16px;
+  border-radius: 999px;
+  border: none;
   background: #111;
   color: white;
-  border: none;
-  margin-top: 10px;
+  font-size: 16px;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 #stockText {
   margin-top: 8px;
-  font-weight: 600;
   font-size: 14px;
+  color: #555;
 }
 </style>
 </head>
@@ -93,29 +132,31 @@ header {
 
 <div class="container">
 
-  <!-- MAIN MEDIA -->
+  <!-- MEDIA -->
   <div class="media" id="mainMedia">
-    <video width="100%" height="100%" controls>
-      <source src="assets/product-video.mp4">
-    </video>
+    <div onclick="showVideo(this)" style="width:100%;height:100%;position:relative;cursor:pointer;">
+      <video width="100%" height="100%" preload="metadata">
+        <source src="assets/product-video.mp4" type="video/mp4">
+      </video>
+      <div class="play">▶</div>
+    </div>
   </div>
 
-  <!-- THUMBNAILS -->
+  <!-- THUMBS -->
   <div class="thumbs">
-    <img class="thumb" src="assets/image1.jpg" onclick="showImage('assets/image1.jpg')">
-    <img class="thumb" src="assets/image2.jpg" onclick="showImage('assets/image2.jpg')">
-    <img class="thumb" src="assets/image3.jpg" onclick="showImage('assets/image3.jpg')">
-    <img class="thumb" src="assets/image4.jpg" onclick="showImage('assets/image4.jpg')">
-    <img class="thumb" src="assets/video-thumb.jpg" onclick="showVideo()">
+    <img class="thumb active" src="assets/video-thumb.jpg" onclick="showVideo(this)">
+    <img class="thumb" src="assets/image1.jpg" onclick="showImage(this,'assets/image1.jpg')">
+    <img class="thumb" src="assets/image2.jpg" onclick="showImage(this,'assets/image2.jpg')">
+    <img class="thumb" src="assets/image3.jpg" onclick="showImage(this,'assets/image3.jpg')">
+    <img class="thumb" src="assets/image4.jpg" onclick="showImage(this,'assets/image4.jpg')">
   </div>
 
-  <!-- PRODUCT INFO -->
+  <!-- CONTENT -->
   <div class="panel">
     <h1>Premium Vacuum Cleaner</h1>
-
     <div class="price">24,99 €</div>
 
-    <p id="stockText">Checking availability...</p>
+    <p id="stockText">Loading...</p>
 
     <button id="buyBtn" class="cta">Buy Now</button>
 
@@ -139,21 +180,16 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 </script>
 
-<!-- BUY FUNCTION -->
+<!-- BUY -->
 <script>
 async function handleBuy() {
   try {
     const ref = db.collection("product").doc("vacuum");
     const doc = await ref.get();
 
-    if (!doc.exists) return alert("Error");
-
     let stock = doc.data().stock;
 
-    if (stock <= 0) {
-      alert("Sold Out");
-      return;
-    }
+    if (stock <= 0) return alert("Sold Out");
 
     document.getElementById("buyBtn").innerText = "Processing...";
     document.getElementById("buyBtnTop").innerText = "Processing...";
@@ -163,45 +199,44 @@ async function handleBuy() {
     window.location.href = "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
 
   } catch (e) {
-    alert("ERROR: " + e.message);
+    alert("Error");
   }
 }
 </script>
 
-<!-- CONNECT BUTTONS -->
 <script>
-document.getElementById("buyBtn").addEventListener("click", handleBuy);
-document.getElementById("buyBtnTop").addEventListener("click", handleBuy);
+document.getElementById("buyBtn").onclick = handleBuy;
+document.getElementById("buyBtnTop").onclick = handleBuy;
 </script>
 
-<!-- LIVE STOCK -->
+<!-- STOCK -->
 <script>
-const ref = db.collection("product").doc("vacuum");
-
-ref.onSnapshot((doc) => {
+db.collection("product").doc("vacuum").onSnapshot((doc) => {
   let stock = doc.data().stock;
 
-  const text = document.getElementById("stockText");
-
-  if (stock > 0) {
-    text.innerText = `In stock: ${stock}`;
-  } else {
-    text.innerText = `Out of stock`;
-  }
+  document.getElementById("stockText").innerText =
+    stock > 0 ? `In stock: ${stock}` : `Out of stock`;
 });
 </script>
 
-<!-- MEDIA SWITCH -->
+<!-- GALLERY -->
 <script>
-function showImage(src) {
-  document.getElementById("mainMedia").innerHTML =
-    `<img src="${src}" style="width:100%;height:100%;object-fit:contain;">`;
+function setActive(el){
+  document.querySelectorAll(".thumb").forEach(t=>t.classList.remove("active"));
+  if(el) el.classList.add("active");
 }
 
-function showVideo() {
+function showImage(el, src){
+  setActive(el);
+  document.getElementById("mainMedia").innerHTML =
+    `<img src="${src}" style="opacity:0" onload="this.style.opacity=1">`;
+}
+
+function showVideo(el){
+  setActive(el);
   document.getElementById("mainMedia").innerHTML =
     `<video width="100%" height="100%" controls autoplay>
-      <source src="assets/product-video.mp4">
+      <source src="assets/product-video.mp4" type="video/mp4">
     </video>`;
 }
 </script>
