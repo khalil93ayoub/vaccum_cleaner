@@ -1,176 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vacuum Cleaner</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>NOVARA</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #fff;
-  color: #111;
+*{
+  box-sizing:border-box;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 24px;
-  border-bottom: 1px solid #eee;
-  font-weight: 500;
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#fff;
+  color:#111;
 }
 
-.top-btn {
-  background: #111;
-  color: white;
-  padding: 10px 18px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
+/* HEADER */
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 24px;
+  border-bottom:1px solid #eee;
+  background:#fff;
+  position:sticky;
+  top:0;
+  z-index:100;
 }
 
-.container {
-  max-width: 1000px;
-  margin: auto;
-  padding: 30px 20px;
+/* LOGO */
+
+.logo-wrap{
+  display:flex;
+  align-items:center;
+}
+
+.logo{
+  height:42px;
+  width:auto;
+  object-fit:contain;
+}
+
+/* BUTTON */
+
+.top-btn{
+  background:#111;
+  color:white;
+  padding:10px 18px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-size:14px;
+  transition:0.2s ease;
+}
+
+.top-btn:hover{
+  opacity:0.9;
+}
+
+/* CONTAINER */
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:30px 20px;
 }
 
 /* MEDIA */
-.media {
-  width: 100%;
-  height: 420px;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #000;
-  position: relative;
+
+.media{
+  width:100%;
+  height:420px;
+  border-radius:18px;
+  overflow:hidden;
+  background:#000;
+  position:relative;
 }
 
 .media img,
-.media video {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  transition: opacity 0.4s ease;
+.media video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  transition:opacity 0.4s ease;
 }
 
 /* PLAY BUTTON */
-.play {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0,0,0,0.6);
-  color: white;
-  font-size: 30px;
-  padding: 16px 20px;
-  border-radius: 50%;
+
+.play{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,0.6);
+  color:white;
+  font-size:30px;
+  padding:16px 20px;
+  border-radius:50%;
 }
 
 /* THUMBS */
-.thumbs {
-  display: flex;
-  gap: 12px;
-  margin-top: 15px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 5px;
+
+.thumbs{
+  display:flex;
+  gap:12px;
+  margin-top:15px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding-bottom:5px;
 }
 
-.thumbs::-webkit-scrollbar {
-  display: none;
+.thumbs::-webkit-scrollbar{
+  display:none;
 }
 
-.thumb {
-  flex: 0 0 auto;
-  width: 75px;
-  height: 75px;
-  border-radius: 10px;
-  object-fit: cover;
-  cursor: pointer;
-  border: 2px solid transparent;
-  scroll-snap-align: start;
+.thumb{
+  flex:0 0 auto;
+  width:75px;
+  height:75px;
+  border-radius:10px;
+  object-fit:cover;
+  cursor:pointer;
+  border:2px solid transparent;
+  scroll-snap-align:start;
+  transition:0.2s ease;
 }
 
-.thumbs {
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+.thumb:hover{
+  transform:scale(1.03);
+}
+
+.thumb.active{
+  border-color:#111;
 }
 
 /* CONTENT */
-.panel {
-  margin-top: 30px;
+
+.panel{
+  margin-top:30px;
 }
 
-.price {
-  font-size: 34px;
-  font-weight: 600;
-  margin-bottom: 10px;
+h1{
+  font-size:34px;
+  margin-bottom:12px;
 }
 
-.cta {
-  width: 100%;
-  padding: 16px;
-  border-radius: 999px;
-  border: none;
-  background: #111;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
+.price{
+  font-size:34px;
+  font-weight:600;
+  margin-bottom:10px;
 }
 
-#stockText {
-  margin-top: 8px;
-  font-size: 14px;
-  color: #555;
+.cta{
+  width:100%;
+  padding:16px;
+  border-radius:999px;
+  border:none;
+  background:#111;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:10px;
+  transition:0.2s ease;
+}
+
+.cta:hover{
+  opacity:0.92;
+}
+
+#stockText{
+  margin-top:8px;
+  font-size:14px;
+  color:#555;
+  margin-bottom:10px;
+}
+
+.info{
+  margin-top:18px;
+  line-height:1.8;
+  color:#444;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  header{
+    padding:14px 16px;
+  }
+
+  .logo{
+    height:34px;
+  }
+
+  .media{
+    height:320px;
+  }
+
+  h1{
+    font-size:28px;
+  }
+
+  .price{
+    font-size:28px;
+  }
+
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
+
 <header>
-  <div>🔥 Limited Offer</div>
-  <button id="buyBtnTop" class="top-btn">Buy Now</button>
+
+  <!-- LOGO -->
+  <div class="logo-wrap">
+    <img 
+      src="assets/novara-logo.png" 
+      class="logo" 
+      alt="NOVARA Logo"
+    />
+  </div>
+
+  <!-- BUTTON -->
+  <button id="buyBtnTop" class="top-btn">
+    Buy Now
+  </button>
+
 </header>
+
+<!-- PAGE -->
 
 <div class="container">
 
   <!-- MEDIA -->
+
   <div class="media" id="mainMedia">
-    <div onclick="showVideo(this)" style="width:100%;height:100%;position:relative;cursor:pointer;">
+
+    <div 
+      onclick="showVideo(this)" 
+      style="
+        width:100%;
+        height:100%;
+        position:relative;
+        cursor:pointer;
+      "
+    >
+
       <video width="100%" height="100%" preload="metadata">
         <source src="assets/product-video.mp4" type="video/mp4">
       </video>
+
       <div class="play">▶</div>
+
     </div>
+
   </div>
 
   <!-- THUMBS -->
+
   <div class="thumbs">
-    <img class="thumb active" src="assets/video-thumb.jpg" onclick="showVideo(this)">
-    <img class="thumb" src="assets/image1.jpg" onclick="showImage(this,'assets/image1.jpg')">
-    <img class="thumb" src="assets/image2.jpg" onclick="showImage(this,'assets/image2.jpg')">
-    <img class="thumb" src="assets/image3.jpg" onclick="showImage(this,'assets/image3.jpg')">
-    <img class="thumb" src="assets/image4.jpg" onclick="showImage(this,'assets/image4.jpg')">
+
+    <img 
+      class="thumb active" 
+      src="assets/video-thumb.jpg"
+      onclick="showVideo(this)"
+    >
+
+    <img 
+      class="thumb"
+      src="assets/image1.jpg"
+      onclick="showImage(this,'assets/image1.jpg')"
+    >
+
+    <img 
+      class="thumb"
+      src="assets/image2.jpg"
+      onclick="showImage(this,'assets/image2.jpg')"
+    >
+
+    <img 
+      class="thumb"
+      src="assets/image3.jpg"
+      onclick="showImage(this,'assets/image3.jpg')"
+    >
+
+    <img 
+      class="thumb"
+      src="assets/image4.jpg"
+      onclick="showImage(this,'assets/image4.jpg')"
+    >
+
   </div>
 
   <!-- CONTENT -->
+
   <div class="panel">
+
     <h1>Premium Vacuum Cleaner</h1>
+
     <div class="price">24,99 €</div>
 
     <p id="stockText">Loading...</p>
 
-    <button id="buyBtn" class="cta">Buy Now</button>
+    <button id="buyBtn" class="cta">
+      Buy Now
+    </button>
 
-    <p>✔ Secure payment<br>✔ Free delivery<br>✔ Tax included</p>
+    <div class="info">
+      ✔ Secure payment<br>
+      ✔ Free delivery<br>
+      ✔ Tax included
+    </div>
+
   </div>
 
 </div>
 
 <!-- FIREBASE -->
+
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
 <script>
@@ -181,30 +337,43 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const db = firebase.firestore();
 </script>
 
 <!-- BUY -->
+
 <script>
-async function handleBuy() {
-  try {
+async function handleBuy(){
+
+  try{
+
     const ref = db.collection("product").doc("vacuum");
+
     const doc = await ref.get();
 
     let stock = doc.data().stock;
 
-    if (stock <= 0) return alert("Sold Out");
+    if(stock <= 0){
+      return alert("Sold Out");
+    }
 
     document.getElementById("buyBtn").innerText = "Processing...";
     document.getElementById("buyBtnTop").innerText = "Processing...";
 
-    await ref.update({ stock: stock - 1 });
+    await ref.update({
+      stock: stock - 1
+    });
 
-    window.location.href = "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
+    window.location.href =
+      "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
 
-  } catch (e) {
+  }catch(e){
+
     alert("Error");
+
   }
+
 }
 </script>
 
@@ -214,34 +383,73 @@ document.getElementById("buyBtnTop").onclick = handleBuy;
 </script>
 
 <!-- STOCK -->
+
 <script>
-db.collection("product").doc("vacuum").onSnapshot((doc) => {
+db.collection("product")
+.doc("vacuum")
+.onSnapshot((doc)=>{
+
   let stock = doc.data().stock;
 
   document.getElementById("stockText").innerText =
-    stock > 0 ? `In stock: ${stock}` : `Out of stock`;
+    stock > 0
+      ? `In stock: ${stock}`
+      : `Out of stock`;
+
 });
 </script>
 
 <!-- GALLERY -->
+
 <script>
 function setActive(el){
-  document.querySelectorAll(".thumb").forEach(t=>t.classList.remove("active"));
-  if(el) el.classList.add("active");
+
+  document
+    .querySelectorAll(".thumb")
+    .forEach(t => t.classList.remove("active"));
+
+  if(el){
+    el.classList.add("active");
+  }
+
 }
 
 function showImage(el, src){
+
   setActive(el);
-  document.getElementById("mainMedia").innerHTML =
-    `<img src="${src}" style="opacity:0" onload="this.style.opacity=1">`;
+
+  document.getElementById("mainMedia").innerHTML = `
+  
+    <img 
+      src="${src}" 
+      style="opacity:0"
+      onload="this.style.opacity=1"
+    >
+
+  `;
+
 }
 
 function showVideo(el){
+
   setActive(el);
-  document.getElementById("mainMedia").innerHTML =
-    `<video width="100%" height="100%" controls autoplay>
-      <source src="assets/product-video.mp4" type="video/mp4">
-    </video>`;
+
+  document.getElementById("mainMedia").innerHTML = `
+  
+    <video 
+      width="100%" 
+      height="100%" 
+      controls 
+      autoplay
+    >
+      <source 
+        src="assets/product-video.mp4" 
+        type="video/mp4"
+      >
+    </video>
+
+  `;
+
 }
 </script>
 
