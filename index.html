@@ -18,52 +18,32 @@ body{
   color:#111;
 }
 
-/* HEADER */
+/* HERO HEADER */
 
 header{
+  height:220px;
   display:flex;
-  justify-content:flex-end;
+  justify-content:center;
   align-items:center;
-  padding:16px 24px;
   border-bottom:1px solid #eee;
   background:#fff;
   position:sticky;
   top:0;
   z-index:100;
-  position:relative;
 }
 
-/* LOGO CENTER */
+/* LOGO */
 
 .logo-wrap{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
   display:flex;
+  justify-content:center;
   align-items:center;
 }
 
 .logo{
-  height:42px;
+  height:110px;
   width:auto;
   object-fit:contain;
-}
-
-/* BUTTON */
-
-.top-btn{
-  background:#111;
-  color:white;
-  padding:10px 18px;
-  border-radius:999px;
-  border:none;
-  cursor:pointer;
-  font-size:14px;
-  transition:0.2s ease;
-}
-
-.top-btn:hover{
-  opacity:0.9;
 }
 
 /* CONTAINER */
@@ -194,11 +174,11 @@ h1{
 @media(max-width:768px){
 
   header{
-    padding:14px 16px;
+    height:160px;
   }
 
   .logo{
-    height:34px;
+    height:80px;
   }
 
   .media{
@@ -219,18 +199,12 @@ h1{
 
 <body>
 
-<!-- HEADER -->
+<!-- HERO HEADER -->
 
 <header>
-
   <div class="logo-wrap">
     <img src="assets/novara-header.png" class="logo">
   </div>
-
-  <button id="buyBtnTop" class="top-btn">
-    Buy Now
-  </button>
-
 </header>
 
 <!-- PAGE -->
@@ -356,7 +330,6 @@ async function handleBuy(){
     }
 
     document.getElementById("buyBtn").innerText = "Processing...";
-    document.getElementById("buyBtnTop").innerText = "Processing...";
 
     await ref.update({
       stock: stock - 1
@@ -374,7 +347,6 @@ async function handleBuy(){
 
 <script>
 document.getElementById("buyBtn").onclick = handleBuy;
-document.getElementById("buyBtnTop").onclick = handleBuy;
 </script>
 
 <!-- STOCK -->
