@@ -18,63 +18,53 @@ body{
   color:#111;
 }
 
-/* HEADER SPACER */
-
+/* ❌ REMOVE ALL HEADER INFLUENCE */
 header{
-  height:30px;
-  background:#fff;
+  display:none;
 }
 
-/* HERO */
+/* 🔒 FIXED HERO CONTAINER (NO FLEX, NO AUTO CENTER IMPACT) */
 
 .hero{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-
-  /* 🔻 50% REDUCED PADDING */
-  padding:10px 20px 5px;
+  width:100%;
+  padding:30px 0 10px; /* FIXED SPACING ONLY */
+  text-align:center;
 }
 
-/* LOGO (unchanged: +25% bigger) */
+/* 🔥 LOGO IS NOW OUT OF LAYOUT DEPENDENCY */
 
 .logo{
   height:225px;
   width:auto;
-  object-fit:contain;
 
-  display:block;
+  display:inline-block;
 
+  /* animation does NOT affect layout */
   animation: floatBrand 4s ease-in-out infinite;
   filter: drop-shadow(0 10px 25px rgba(0,0,0,0.08));
 }
 
-/* FLOAT ANIMATION */
+/* FLOAT ONLY VISUAL (NO LAYOUT SHIFT) */
 
 @keyframes floatBrand{
   0%{
-    transform:translateY(0px) scale(1);
-    opacity:0.9;
+    transform:translateY(0px);
   }
   50%{
-    transform:translateY(-8px) scale(1.02);
-    opacity:1;
+    transform:translateY(-8px);
   }
   100%{
-    transform:translateY(0px) scale(1);
-    opacity:0.9;
+    transform:translateY(0px);
   }
 }
 
-/* 🔻 DIVIDER (25% REDUCED SPACE) */
+/* 🔒 FIXED DIVIDER SPACING (ABSOLUTE CONTROL) */
 
 .divider{
   width:60px;
   height:1px;
   background:#ddd;
-
-  margin-top:6px; /* was 8px → -25% */
+  margin:10px auto 0; /* FIXED CENTERED SPACE */
 }
 
 /* CONTAINER */
@@ -101,7 +91,6 @@ header{
   width:100%;
   height:100%;
   object-fit:contain;
-  transition:opacity 0.4s ease;
 }
 
 /* PLAY */
@@ -182,7 +171,6 @@ h1{
   font-size:16px;
   cursor:pointer;
   margin-top:10px;
-  transition:0.2s ease;
 }
 
 .cta:hover{
@@ -228,9 +216,7 @@ h1{
 
 <body>
 
-<header></header>
-
-<!-- HERO -->
+<!-- HERO (NO LAYOUT COUPLING) -->
 
 <section class="hero">
   <img src="assets/novara-header.png" class="logo">
@@ -349,9 +335,7 @@ db.collection("product")
   let stock = doc.data().stock;
 
   document.getElementById("stockText").innerText =
-    stock > 0
-      ? `In stock: ${stock}`
-      : `Out of stock`;
+    stock > 0 ? `In stock: ${stock}` : `Out of stock`;
 
 });
 </script>
