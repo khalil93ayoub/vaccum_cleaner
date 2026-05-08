@@ -18,66 +18,49 @@ body{
   color:#111;
 }
 
-/* 🌈 LUXURY HERO HEADER */
+/* 🧼 CLEAN HEADER (MATCH LOGO SIZE) */
 
 header{
-  height:320px;
   display:flex;
   justify-content:center;
   align-items:center;
+  padding:14px 20px;
+  background:#fff;
+  border-bottom:1px solid #eee;
   position:sticky;
   top:0;
   z-index:100;
-  overflow:hidden;
-
-  /* Luxury gradient background */
-  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 35%, #2c2c2c 70%, #111 100%);
 }
 
-/* subtle glow overlay */
-header::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 60%);
-  pointer-events:none;
-}
-
-/* LOGO WRAP */
+/* LOGO */
 
 .logo-wrap{
   display:flex;
   justify-content:center;
   align-items:center;
-  position:relative;
-  z-index:2;
 }
 
-/* ✨ BIG LUXURY ANIMATED LOGO */
+/* ✨ CLEAN ANIMATED LOGO */
 
 .logo{
-  height:180px;
+  height:70px;
   width:auto;
   object-fit:contain;
 
-  /* animation */
-  animation: floatFade 3.5s ease-in-out infinite;
-  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+  animation: floatSoft 4s ease-in-out infinite;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
 }
 
-/* floating animation */
-@keyframes floatFade{
+/* subtle luxury float */
+@keyframes floatSoft{
   0%{
-    transform:translateY(0px) scale(1);
-    opacity:0.85;
+    transform:translateY(0px);
   }
   50%{
-    transform:translateY(-10px) scale(1.03);
-    opacity:1;
+    transform:translateY(-4px);
   }
   100%{
-    transform:translateY(0px) scale(1);
-    opacity:0.85;
+    transform:translateY(0px);
   }
 }
 
@@ -108,7 +91,7 @@ header::before{
   transition:opacity 0.4s ease;
 }
 
-/* PLAY BUTTON */
+/* PLAY */
 
 .play{
   position:absolute;
@@ -208,12 +191,8 @@ h1{
 
 @media(max-width:768px){
 
-  header{
-    height:240px;
-  }
-
   .logo{
-    height:120px;
+    height:55px;
   }
 
   .media{
@@ -234,7 +213,7 @@ h1{
 
 <body>
 
-<!-- HERO HEADER -->
+<!-- HEADER -->
 
 <header>
   <div class="logo-wrap">
@@ -252,12 +231,7 @@ h1{
 
     <div 
       onclick="showVideo(this)" 
-      style="
-        width:100%;
-        height:100%;
-        position:relative;
-        cursor:pointer;
-      "
+      style="width:100%;height:100%;position:relative;cursor:pointer;"
     >
 
       <video width="100%" height="100%" preload="metadata">
@@ -292,9 +266,7 @@ h1{
 
     <p id="stockText">Loading...</p>
 
-    <button id="buyBtn" class="cta">
-      Buy Now
-    </button>
+    <button id="buyBtn" class="cta">Buy Now</button>
 
     <div class="info">
       ✔ Secure payment<br>
@@ -376,20 +348,13 @@ db.collection("product")
 <!-- GALLERY -->
 
 <script>
-function setActive(el){
-  document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
-  if(el) el.classList.add("active");
-}
-
 function showImage(el, src){
-  setActive(el);
   document.getElementById("mainMedia").innerHTML = `
     <img src="${src}" style="opacity:0" onload="this.style.opacity=1">
   `;
 }
 
 function showVideo(el){
-  setActive(el);
   document.getElementById("mainMedia").innerHTML = `
     <video width="100%" height="100%" controls autoplay>
       <source src="assets/product-video.mp4" type="video/mp4">
