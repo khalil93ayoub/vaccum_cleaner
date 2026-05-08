@@ -1,17 +1,18 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+<title>NOVARA</title>
+
+<style>
 *{
   box-sizing:border-box;
 }
 
-html,
 body{
   margin:0;
-  padding:0;
-  overflow-x:hidden;
-}
-
-body{
   font-family:-apple-system,BlinkMacSystemFont,sans-serif;
   background:#fff;
   color:#111;
@@ -23,73 +24,50 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-
-  padding:14px 18px;
-
+  padding:16px 24px;
   border-bottom:1px solid #eee;
-
-  background:rgba(255,255,255,0.92);
-
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-
+  background:#fff;
   position:sticky;
   top:0;
   z-index:100;
-
-  width:100%;
 }
 
 /* LOGO */
 
+.logo-wrap{
+  display:flex;
+  align-items:center;
+}
+
 .logo{
-  height:30px;
+  height:42px;
   width:auto;
-
-  display:block;
   object-fit:contain;
-
-  flex-shrink:0;
 }
 
 /* BUTTON */
 
 .top-btn{
   background:#111;
-  color:#fff;
-
-  padding:11px 20px;
-
+  color:white;
+  padding:10px 18px;
   border-radius:999px;
   border:none;
-
   cursor:pointer;
-
-  font-size:15px;
-  font-weight:500;
-
+  font-size:14px;
   transition:0.2s ease;
-
-  white-space:nowrap;
-
-  flex-shrink:0;
 }
 
 .top-btn:hover{
-  opacity:0.92;
+  opacity:0.9;
 }
 
 /* CONTAINER */
 
 .container{
-  width:100%;
   max-width:1000px;
-
   margin:auto;
-
-  padding:26px 16px 40px 16px;
-
-  overflow:hidden;
+  padding:30px 20px;
 }
 
 /* MEDIA */
@@ -97,13 +75,9 @@ header{
 .media{
   width:100%;
   height:420px;
-
-  border-radius:24px;
-
+  border-radius:18px;
   overflow:hidden;
-
   background:#000;
-
   position:relative;
 }
 
@@ -111,57 +85,33 @@ header{
 .media video{
   width:100%;
   height:100%;
-
   object-fit:contain;
-
-  display:block;
+  transition:opacity 0.4s ease;
 }
 
-/* PLAY */
+/* PLAY BUTTON */
 
 .play{
   position:absolute;
-
   top:50%;
   left:50%;
-
   transform:translate(-50%,-50%);
-
-  background:rgba(0,0,0,0.55);
-
-  color:#fff;
-
-  font-size:28px;
-
-  width:72px;
-  height:72px;
-
+  background:rgba(0,0,0,0.6);
+  color:white;
+  font-size:30px;
+  padding:16px 20px;
   border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 
 /* THUMBS */
 
 .thumbs{
   display:flex;
-
   gap:12px;
-
-  margin-top:16px;
-
+  margin-top:15px;
   overflow-x:auto;
-  overflow-y:hidden;
-
-  -webkit-overflow-scrolling:touch;
-
-  scrollbar-width:none;
-
-  width:100%;
-
-  padding-bottom:4px;
+  scroll-snap-type:x mandatory;
+  padding-bottom:5px;
 }
 
 .thumbs::-webkit-scrollbar{
@@ -170,94 +120,69 @@ header{
 
 .thumb{
   flex:0 0 auto;
-
-  width:82px;
-  height:82px;
-
-  border-radius:16px;
-
+  width:75px;
+  height:75px;
+  border-radius:10px;
   object-fit:cover;
-
   cursor:pointer;
-
   border:2px solid transparent;
-
+  scroll-snap-align:start;
   transition:0.2s ease;
-}
-
-.thumb.active{
-  border-color:#111;
 }
 
 .thumb:hover{
   transform:scale(1.03);
 }
 
+.thumb.active{
+  border-color:#111;
+}
+
 /* CONTENT */
 
 .panel{
-  margin-top:34px;
+  margin-top:30px;
 }
 
 h1{
-  font-size:42px;
-  line-height:1.1;
-  margin-bottom:14px;
-}
-
-.price{
-  font-size:42px;
-  font-weight:700;
-
+  font-size:34px;
   margin-bottom:12px;
 }
 
-#stockText{
-  margin-top:10px;
-
-  font-size:16px;
-
-  color:#555;
+.price{
+  font-size:34px;
+  font-weight:600;
+  margin-bottom:10px;
 }
-
-/* CTA */
 
 .cta{
   width:100%;
-
-  margin-top:18px;
-
-  padding:18px;
-
-  border:none;
-
+  padding:16px;
   border-radius:999px;
-
+  border:none;
   background:#111;
-  color:#fff;
-
-  font-size:17px;
-  font-weight:600;
-
+  color:white;
+  font-size:16px;
   cursor:pointer;
-
+  margin-top:10px;
   transition:0.2s ease;
 }
 
 .cta:hover{
-  opacity:0.94;
+  opacity:0.92;
 }
 
-/* INFO */
+#stockText{
+  margin-top:8px;
+  font-size:14px;
+  color:#555;
+  margin-bottom:10px;
+}
 
 .info{
-  margin-top:22px;
-
-  line-height:2;
-
+  margin-top:18px;
+  line-height:1.8;
   color:#444;
-
-  font-size:15px;
 }
 
 /* MOBILE */
@@ -265,30 +190,15 @@ h1{
 @media(max-width:768px){
 
   header{
-    padding:12px 14px;
+    padding:14px 16px;
   }
 
   .logo{
-    height:26px;
-  }
-
-  .top-btn{
-    padding:10px 18px;
-    font-size:14px;
-  }
-
-  .container{
-    padding:22px 12px 40px 12px;
+    height:34px;
   }
 
   .media{
-    height:300px;
-    border-radius:22px;
-  }
-
-  .thumb{
-    width:76px;
-    height:76px;
+    height:320px;
   }
 
   h1{
@@ -296,14 +206,242 @@ h1{
   }
 
   .price{
-    font-size:30px;
+    font-size:28px;
   }
 
-  .cta{
-    padding:16px;
-    font-size:16px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+  <img src="assets/novara-header.png" class="logo">
+
+  <button id="buyBtnTop" class="top-btn">
+    Buy Now
+  </button>
+</header>
+
+<!-- PAGE -->
+
+<div class="container">
+
+  <!-- MEDIA -->
+
+  <div class="media" id="mainMedia">
+
+    <div 
+      onclick="showVideo(this)" 
+      style="
+        width:100%;
+        height:100%;
+        position:relative;
+        cursor:pointer;
+      "
+    >
+
+      <video width="100%" height="100%" preload="metadata">
+        <source src="assets/product-video.mp4" type="video/mp4">
+      </video>
+
+      <div class="play">▶</div>
+
+    </div>
+
+  </div>
+
+  <!-- THUMBS -->
+
+  <div class="thumbs">
+
+    <img 
+      class="thumb active" 
+      src="assets/video-thumb.jpg"
+      onclick="showVideo(this)"
+    >
+
+    <img 
+      class="thumb"
+      src="assets/image1.jpg"
+      onclick="showImage(this,'assets/image1.jpg')"
+    >
+
+    <img 
+      class="thumb"
+      src="assets/image2.jpg"
+      onclick="showImage(this,'assets/image2.jpg')"
+    >
+
+    <img 
+      class="thumb"
+      src="assets/image3.jpg"
+      onclick="showImage(this,'assets/image3.jpg')"
+    >
+
+    <img 
+      class="thumb"
+      src="assets/image4.jpg"
+      onclick="showImage(this,'assets/image4.jpg')"
+    >
+
+  </div>
+
+  <!-- CONTENT -->
+
+  <div class="panel">
+
+    <h1>Premium Vacuum Cleaner</h1>
+
+    <div class="price">24,99 €</div>
+
+    <p id="stockText">Loading...</p>
+
+    <button id="buyBtn" class="cta">
+      Buy Now
+    </button>
+
+    <div class="info">
+      ✔ Secure payment<br>
+      ✔ Free delivery<br>
+      ✔ Tax included
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDBYtMrRsnfHS8QMz8UgMjVmrBJ92siSbU",
+  authDomain: "vacuum-cleaner-e8857.firebaseapp.com",
+  projectId: "vacuum-cleaner-e8857"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+</script>
+
+<!-- BUY -->
+
+<script>
+async function handleBuy(){
+
+  try{
+
+    const ref = db.collection("product").doc("vacuum");
+
+    const doc = await ref.get();
+
+    let stock = doc.data().stock;
+
+    if(stock <= 0){
+      return alert("Sold Out");
+    }
+
+    document.getElementById("buyBtn").innerText = "Processing...";
+    document.getElementById("buyBtnTop").innerText = "Processing...";
+
+    await ref.update({
+      stock: stock - 1
+    });
+
+    window.location.href =
+      "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
+
+  }catch(e){
+
+    alert("Error");
+
+  }
+
+}
+</script>
+
+<script>
+document.getElementById("buyBtn").onclick = handleBuy;
+document.getElementById("buyBtnTop").onclick = handleBuy;
+</script>
+
+<!-- STOCK -->
+
+<script>
+db.collection("product")
+.doc("vacuum")
+.onSnapshot((doc)=>{
+
+  let stock = doc.data().stock;
+
+  document.getElementById("stockText").innerText =
+    stock > 0
+      ? `In stock: ${stock}`
+      : `Out of stock`;
+
+});
+</script>
+
+<!-- GALLERY -->
+
+<script>
+function setActive(el){
+
+  document
+    .querySelectorAll(".thumb")
+    .forEach(t => t.classList.remove("active"));
+
+  if(el){
+    el.classList.add("active");
   }
 
 }
 
-</style>
+function showImage(el, src){
+
+  setActive(el);
+
+  document.getElementById("mainMedia").innerHTML = `
+  
+    <img 
+      src="${src}" 
+      style="opacity:0"
+      onload="this.style.opacity=1"
+    >
+
+  `;
+
+}
+
+function showVideo(el){
+
+  setActive(el);
+
+  document.getElementById("mainMedia").innerHTML = `
+  
+    <video 
+      width="100%" 
+      height="100%" 
+      controls 
+      autoplay
+    >
+      <source 
+        src="assets/product-video.mp4" 
+        type="video/mp4"
+      >
+    </video>
+
+  `;
+
+}
+</script>
+
+</body>
+</html>
