@@ -41,8 +41,9 @@ header{
 }
 
 .logo{
-  height:42px;
+  height:28px;
   width:auto;
+  display:block;
   object-fit:contain;
 }
 
