@@ -18,50 +18,56 @@ body{
   color:#111;
 }
 
-/* 🧼 CLEAN HEADER (MATCH LOGO SIZE) */
+/* 🧼 MINIMAL TOP SPACE (NOT A HEADER ANYMORE) */
 
 header{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:14px 20px;
+  height:40px;
   background:#fff;
-  border-bottom:1px solid #eee;
-  position:sticky;
-  top:0;
-  z-index:100;
 }
 
-/* LOGO */
+/* 🌟 HERO BRAND SECTION */
 
-.logo-wrap{
+.hero{
   display:flex;
   justify-content:center;
   align-items:center;
+  flex-direction:column;
+  padding:40px 20px 20px;
 }
 
-/* ✨ CLEAN ANIMATED LOGO */
+/* BIG BRAND LOGO */
 
 .logo{
-  height:70px;
+  height:160px;
   width:auto;
   object-fit:contain;
 
-  animation: floatSoft 4s ease-in-out infinite;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.08));
+  animation: floatBrand 4s ease-in-out infinite;
+  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.08));
 }
 
-/* subtle luxury float */
-@keyframes floatSoft{
+/* soft luxury motion */
+@keyframes floatBrand{
   0%{
-    transform:translateY(0px);
+    transform:translateY(0px) scale(1);
+    opacity:0.9;
   }
   50%{
-    transform:translateY(-4px);
+    transform:translateY(-8px) scale(1.02);
+    opacity:1;
   }
   100%{
-    transform:translateY(0px);
+    transform:translateY(0px) scale(1);
+    opacity:0.9;
   }
+}
+
+/* subtle brand spacing line */
+.divider{
+  width:60px;
+  height:1px;
+  background:#ddd;
+  margin-top:20px;
 }
 
 /* CONTAINER */
@@ -144,6 +150,7 @@ header{
 
 .panel{
   margin-top:30px;
+  text-align:center;
 }
 
 h1{
@@ -159,6 +166,7 @@ h1{
 
 .cta{
   width:100%;
+  max-width:420px;
   padding:16px;
   border-radius:999px;
   border:none;
@@ -192,7 +200,7 @@ h1{
 @media(max-width:768px){
 
   .logo{
-    height:55px;
+    height:110px;
   }
 
   .media{
@@ -213,13 +221,15 @@ h1{
 
 <body>
 
-<!-- HEADER -->
+<!-- MINIMAL TOP SPACE -->
+<header></header>
 
-<header>
-  <div class="logo-wrap">
-    <img src="assets/novara-header.png" class="logo">
-  </div>
-</header>
+<!-- 🌟 BRAND HERO -->
+
+<section class="hero">
+  <img src="assets/novara-header.png" class="logo">
+  <div class="divider"></div>
+</section>
 
 <!-- PAGE -->
 
