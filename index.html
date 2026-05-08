@@ -18,32 +18,67 @@ body{
   color:#111;
 }
 
-/* HERO HEADER */
+/* 🌈 LUXURY HERO HEADER */
 
 header{
-  height:220px;
+  height:320px;
   display:flex;
   justify-content:center;
   align-items:center;
-  border-bottom:1px solid #eee;
-  background:#fff;
   position:sticky;
   top:0;
   z-index:100;
+  overflow:hidden;
+
+  /* Luxury gradient background */
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 35%, #2c2c2c 70%, #111 100%);
 }
 
-/* LOGO */
+/* subtle glow overlay */
+header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.08), transparent 60%);
+  pointer-events:none;
+}
+
+/* LOGO WRAP */
 
 .logo-wrap{
   display:flex;
   justify-content:center;
   align-items:center;
+  position:relative;
+  z-index:2;
 }
 
+/* ✨ BIG LUXURY ANIMATED LOGO */
+
 .logo{
-  height:110px;
+  height:180px;
   width:auto;
   object-fit:contain;
+
+  /* animation */
+  animation: floatFade 3.5s ease-in-out infinite;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+}
+
+/* floating animation */
+@keyframes floatFade{
+  0%{
+    transform:translateY(0px) scale(1);
+    opacity:0.85;
+  }
+  50%{
+    transform:translateY(-10px) scale(1.03);
+    opacity:1;
+  }
+  100%{
+    transform:translateY(0px) scale(1);
+    opacity:0.85;
+  }
 }
 
 /* CONTAINER */
@@ -174,11 +209,11 @@ h1{
 @media(max-width:768px){
 
   header{
-    height:160px;
+    height:240px;
   }
 
   .logo{
-    height:80px;
+    height:120px;
   }
 
   .media{
@@ -239,35 +274,11 @@ h1{
 
   <div class="thumbs">
 
-    <img 
-      class="thumb active" 
-      src="assets/video-thumb.jpg"
-      onclick="showVideo(this)"
-    >
-
-    <img 
-      class="thumb"
-      src="assets/image1.jpg"
-      onclick="showImage(this,'assets/image1.jpg')"
-    >
-
-    <img 
-      class="thumb"
-      src="assets/image2.jpg"
-      onclick="showImage(this,'assets/image2.jpg')"
-    >
-
-    <img 
-      class="thumb"
-      src="assets/image3.jpg"
-      onclick="showImage(this,'assets/image3.jpg')"
-    >
-
-    <img 
-      class="thumb"
-      src="assets/image4.jpg"
-      onclick="showImage(this,'assets/image4.jpg')"
-    >
+    <img class="thumb active" src="assets/video-thumb.jpg" onclick="showVideo(this)">
+    <img class="thumb" src="assets/image1.jpg" onclick="showImage(this,'assets/image1.jpg')">
+    <img class="thumb" src="assets/image2.jpg" onclick="showImage(this,'assets/image2.jpg')">
+    <img class="thumb" src="assets/image3.jpg" onclick="showImage(this,'assets/image3.jpg')">
+    <img class="thumb" src="assets/image4.jpg" onclick="showImage(this,'assets/image4.jpg')">
 
   </div>
 
@@ -308,7 +319,6 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.firestore();
 </script>
 
@@ -320,7 +330,6 @@ async function handleBuy(){
   try{
 
     const ref = db.collection("product").doc("vacuum");
-
     const doc = await ref.get();
 
     let stock = doc.data().stock;
@@ -343,9 +352,7 @@ async function handleBuy(){
   }
 
 }
-</script>
 
-<script>
 document.getElementById("buyBtn").onclick = handleBuy;
 </script>
 
@@ -370,49 +377,24 @@ db.collection("product")
 
 <script>
 function setActive(el){
-
-  document
-    .querySelectorAll(".thumb")
-    .forEach(t => t.classList.remove("active"));
-
-  if(el){
-    el.classList.add("active");
-  }
-
+  document.querySelectorAll(".thumb").forEach(t => t.classList.remove("active"));
+  if(el) el.classList.add("active");
 }
 
 function showImage(el, src){
-
   setActive(el);
-
   document.getElementById("mainMedia").innerHTML = `
-    <img 
-      src="${src}" 
-      style="opacity:0"
-      onload="this.style.opacity=1"
-    >
+    <img src="${src}" style="opacity:0" onload="this.style.opacity=1">
   `;
-
 }
 
 function showVideo(el){
-
   setActive(el);
-
   document.getElementById("mainMedia").innerHTML = `
-    <video 
-      width="100%" 
-      height="100%" 
-      controls 
-      autoplay
-    >
-      <source 
-        src="assets/product-video.mp4" 
-        type="video/mp4"
-      >
+    <video width="100%" height="100%" controls autoplay>
+      <source src="assets/product-video.mp4" type="video/mp4">
     </video>
   `;
-
 }
 </script>
 
