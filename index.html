@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -27,14 +28,14 @@ header{
 
 .hero{
   width:100%;
-  padding:30px 0 10px; /* FIXED SPACING ONLY */
+  padding:15px 0 5px; /* REDUCED SPACING */
   text-align:center;
 }
 
 /* 🔥 LOGO IS NOW OUT OF LAYOUT DEPENDENCY */
 
 .logo{
-  height:225px;
+  height:280px;
   width:auto;
 
   display:inline-block;
@@ -64,7 +65,7 @@ header{
   width:60px;
   height:1px;
   background:#ddd;
-  margin:10px auto 0; /* FIXED CENTERED SPACE */
+  margin:5px auto 0; /* REDUCED SPACING */
 }
 
 /* CONTAINER */
@@ -195,7 +196,7 @@ h1{
 @media(max-width:768px){
 
   .logo{
-    height:150px;
+    height:200px;
   }
 
   .media{
@@ -212,6 +213,7 @@ h1{
 
 }
 </style>
+
 </head>
 
 <body>
@@ -229,15 +231,17 @@ h1{
 
   <div class="media" id="mainMedia">
 
-    <div onclick="showVideo(this)" style="width:100%;height:100%;position:relative;cursor:pointer;">
+```
+<div onclick="showVideo(this)" style="width:100%;height:100%;position:relative;cursor:pointer;">
 
-      <video width="100%" height="100%" preload="metadata">
-        <source src="assets/product-video.mp4" type="video/mp4">
-      </video>
+  <video width="100%" height="100%" preload="metadata">
+    <source src="assets/product-video.mp4" type="video/mp4">
+  </video>
 
-      <div class="play">▶</div>
+  <div class="play">▶</div>
 
-    </div>
+</div>
+```
 
   </div>
 
@@ -245,11 +249,13 @@ h1{
 
   <div class="thumbs">
 
-    <img class="thumb active" src="assets/video-thumb.jpg" onclick="showVideo(this)">
-    <img class="thumb" src="assets/image1.jpg" onclick="showImage(this,'assets/image1.jpg')">
-    <img class="thumb" src="assets/image2.jpg" onclick="showImage(this,'assets/image2.jpg')">
-    <img class="thumb" src="assets/image3.jpg" onclick="showImage(this,'assets/image3.jpg')">
-    <img class="thumb" src="assets/image4.jpg" onclick="showImage(this,'assets/image4.jpg')">
+```
+<img class="thumb active" src="assets/video-thumb.jpg" onclick="showVideo(this)">
+<img class="thumb" src="assets/image1.jpg" onclick="showImage(this,'assets/image1.jpg')">
+<img class="thumb" src="assets/image2.jpg" onclick="showImage(this,'assets/image2.jpg')">
+<img class="thumb" src="assets/image3.jpg" onclick="showImage(this,'assets/image3.jpg')">
+<img class="thumb" src="assets/image4.jpg" onclick="showImage(this,'assets/image4.jpg')">
+```
 
   </div>
 
@@ -257,19 +263,21 @@ h1{
 
   <div class="panel">
 
-    <h1>Premium Vacuum Cleaner</h1>
+```
+<h1>Premium Vacuum Cleaner</h1>
 
-    <div class="price">24,99 €</div>
+<div class="price">24,99 €</div>
 
-    <p id="stockText">Loading...</p>
+<p id="stockText">Loading...</p>
 
-    <button id="buyBtn" class="cta">Buy Now</button>
+<button id="buyBtn" class="cta">Buy Now</button>
 
-    <div class="info">
-      ✔ Secure payment<br>
-      ✔ Free delivery<br>
-      ✔ Tax included
-    </div>
+<div class="info">
+  ✔ Secure payment<br>
+  ✔ Free delivery<br>
+  ✔ Tax included
+</div>
+```
 
   </div>
 
@@ -278,6 +286,7 @@ h1{
 <!-- FIREBASE -->
 
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
 <script>
