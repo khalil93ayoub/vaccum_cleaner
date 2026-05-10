@@ -3,265 +3,216 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
 <title>NOVARA</title>
 
 <style>
 
 *{
+  margin:0;
+  padding:0;
   box-sizing:border-box;
 }
 
 body{
-  margin:0;
   font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-  background:#fff;
+  background:#f7f7f7;
   color:#111;
-  overflow-x:hidden;
 }
 
 /* HEADER */
 
 header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:16px 20px;
-
-  border-bottom:1px solid #eee;
-  background:#fff;
-
   position:sticky;
   top:0;
   z-index:100;
 
-  overflow:hidden;
-}
+  background:white;
+  border-bottom:1px solid #eee;
 
-/* LOGO FIX */
-
-.logo-wrap{
-  width:160px;
-  overflow:hidden;
+  padding:18px 20px;
 
   display:flex;
   align-items:center;
+  justify-content:center;
+}
+
+.logo-wrap{
+  width:190px;
+  overflow:hidden;
 }
 
 .logo{
-  height:52px;
-  width:auto;
-
-  transform:scale(2.2);
-  transform-origin:left center;
-
-  object-fit:contain;
-}
-
-/* BUTTON */
-
-.top-btn{
-  background:#111;
-  color:white;
-  padding:12px 22px;
-  border-radius:999px;
-  border:none;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:500;
-  transition:0.2s ease;
-}
-
-.top-btn:hover{
-  opacity:0.92;
-}
-
-/* CONTAINER */
-
-.container{
-  max-width:1000px;
-  margin:auto;
-  padding:22px 20px 40px;
-}
-
-/* MEDIA */
-
-.media{
   width:100%;
-  height:420px;
-  border-radius:22px;
-  overflow:hidden;
-  background:#000;
-  position:relative;
+  transform:scale(1.7);
+  transform-origin:center;
 }
 
-.media img,
-.media video{
+/* HERO */
+
+.hero{
+  padding:70px 20px 50px;
+  text-align:center;
+  background:white;
+}
+
+.hero h1{
+  font-size:54px;
+  line-height:1;
+  margin-bottom:18px;
+  letter-spacing:-2px;
+}
+
+.hero p{
+  max-width:700px;
+  margin:auto;
+  color:#666;
+  font-size:18px;
+  line-height:1.7;
+}
+
+/* PRODUCTS */
+
+.products{
+  max-width:1400px;
+  margin:auto;
+  padding:40px 20px 80px;
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:26px;
+}
+
+.card{
+  background:white;
+  border-radius:28px;
+  overflow:hidden;
+
+  transition:0.25s ease;
+
+  text-decoration:none;
+  color:#111;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,0.04);
+}
+
+.card:hover{
+  transform:translateY(-6px);
+
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.08);
+}
+
+.product-image-wrap{
+  width:100%;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  background:#f3f3f3;
+}
+
+.product-image{
   width:100%;
   height:100%;
-  object-fit:contain;
-}
-
-/* PLAY */
-
-.play{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:rgba(0,0,0,0.6);
-  color:white;
-  font-size:30px;
-  padding:16px 20px;
-  border-radius:50%;
-}
-
-/* THUMBS */
-
-.thumbs{
-  display:flex;
-  gap:12px;
-  margin-top:15px;
-
-  overflow-x:auto;
-  overflow-y:hidden;
-
-  scroll-snap-type:x mandatory;
-
-  padding-bottom:6px;
-
-  -webkit-overflow-scrolling:touch;
-}
-
-.thumbs::-webkit-scrollbar{
-  display:none;
-}
-
-.thumb{
-  flex:0 0 auto;
-
-  width:78px;
-  height:78px;
-
-  border-radius:14px;
-
   object-fit:cover;
 
-  cursor:pointer;
-
-  border:2px solid transparent;
-
-  scroll-snap-align:start;
-
-  transition:0.2s ease;
+  transition:0.4s ease;
 }
 
-.thumb:hover{
-  transform:scale(1.03);
+.card:hover .product-image{
+  transform:scale(1.05);
 }
 
-.thumb.active{
-  border-color:#111;
+.product-content{
+  padding:24px;
 }
 
-/* CONTENT */
-
-.panel{
-  margin-top:34px;
-}
-
-h1{
-  font-size:42px;
-  line-height:1.1;
-  margin-bottom:16px;
-}
-
-.price{
-  font-size:38px;
+.product-title{
+  font-size:24px;
   font-weight:700;
-  margin-bottom:8px;
+  margin-bottom:12px;
 }
 
-#stockText{
-  margin-top:6px;
-  font-size:15px;
+.product-description{
   color:#666;
+  line-height:1.7;
   margin-bottom:18px;
+  font-size:15px;
 }
 
-/* CTA */
+.price-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-.cta{
-  width:100%;
-  padding:18px;
-  border-radius:999px;
-  border:none;
+.product-price{
+  font-size:26px;
+  font-weight:700;
+}
+
+.view-btn{
   background:#111;
   color:white;
-  font-size:17px;
-  font-weight:500;
+  border:none;
+  padding:12px 18px;
+  border-radius:999px;
   cursor:pointer;
-  transition:0.2s ease;
+  font-size:14px;
 }
 
-.cta:hover{
-  opacity:0.92;
-}
+/* FOOTER */
 
-/* INFO */
-
-.info{
-  margin-top:22px;
-  line-height:1.9;
-  color:#444;
-  font-size:15px;
+footer{
+  background:white;
+  border-top:1px solid #eee;
+  padding:30px 20px;
+  text-align:center;
+  color:#666;
+  font-size:14px;
 }
 
 /* MOBILE */
 
+@media(max-width:980px){
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
 @media(max-width:768px){
 
-  header{
-    padding:14px 16px;
+  .hero{
+    padding:55px 18px 35px;
   }
 
-  .logo-wrap{
-    width:135px;
+  .hero h1{
+    font-size:38px;
   }
 
-  .logo{
-    height:44px;
-    transform:scale(2.1);
+  .hero p{
+    font-size:15px;
   }
 
-  .top-btn{
-    padding:11px 18px;
-    font-size:14px;
+  .products{
+    grid-template-columns:1fr;
+    padding:25px 16px 60px;
+    gap:20px;
   }
 
-  .container{
-    padding:18px 14px 35px;
+  .product-title{
+    font-size:22px;
   }
 
-  .media{
-    height:330px;
-    border-radius:20px;
-  }
-
-  h1{
-    font-size:28px;
-  }
-
-  .price{
-    font-size:30px;
+  .product-price{
+    font-size:24px;
   }
 
 }
 
 </style>
 </head>
-
 <body>
 
 <!-- HEADER -->
@@ -272,248 +223,194 @@ h1{
     <img src="assets/novara-header.png" class="logo">
   </div>
 
-  <button id="buyBtnTop" class="top-btn">
-    Buy Now
-  </button>
-
 </header>
 
-<!-- PAGE -->
+<!-- HERO -->
 
-<div class="container">
+<section class="hero">
 
-  <!-- MEDIA -->
+  <h1>Luxury Tech Essentials</h1>
 
-  <div class="media" id="mainMedia">
+  <p>
+    Premium gadgets and smart accessories designed for modern living.
+    Explore the NOVARA collection.
+  </p>
 
-    <div
-      onclick="showVideo(this)"
-      style="
-        width:100%;
-        height:100%;
-        position:relative;
-        cursor:pointer;
-      "
-    >
+</section>
 
-      <video width="100%" height="100%" preload="metadata">
+<!-- PRODUCTS -->
 
-        <source
-          src="assets/product-video.mp4"
-          type="video/mp4"
-        >
+<section class="products">
 
-      </video>
+  <!-- PRODUCT 1 -->
 
-      <div class="play">▶</div>
+  <a href="vacuum.html" class="card">
+
+    <div class="product-image-wrap">
+      <img src="assets/image1.jpg" class="product-image">
+    </div>
+
+    <div class="product-content">
+
+      <div class="product-title">
+        Premium Vacuum Cleaner
+      </div>
+
+      <div class="product-description">
+        High‑power wireless vacuum cleaner for car and home cleaning.
+      </div>
+
+      <div class="price-row">
+        <div class="product-price">24,99 €</div>
+        <button class="view-btn">View</button>
+      </div>
 
     </div>
 
-  </div>
+  </a>
 
-  <!-- THUMBNAILS -->
+  <!-- PRODUCT 2 -->
 
-  <div class="thumbs">
+  <a href="product2.html" class="card">
 
-    <img
-      class="thumb active"
-      src="assets/video-thumb.jpg"
-      onclick="showVideo(this)"
-    >
-
-    <img
-      class="thumb"
-      src="assets/image1.jpg"
-      onclick="showImage(this,'assets/image1.jpg')"
-    >
-
-    <img
-      class="thumb"
-      src="assets/image2.jpg"
-      onclick="showImage(this,'assets/image2.jpg')"
-    >
-
-    <img
-      class="thumb"
-      src="assets/image3.jpg"
-      onclick="showImage(this,'assets/image3.jpg')"
-    >
-
-    <img
-      class="thumb"
-      src="assets/image4.jpg"
-      onclick="showImage(this,'assets/image4.jpg')"
-    >
-
-  </div>
-
-  <!-- CONTENT -->
-
-  <div class="panel">
-
-    <h1>Premium Vacuum Cleaner</h1>
-
-    <div class="price">24,99 €</div>
-
-    <p id="stockText">Loading...</p>
-
-    <button id="buyBtn" class="cta">
-      Buy Now
-    </button>
-
-    <div class="info">
-      ✔ Secure payment<br>
-      ✔ Free delivery<br>
-      ✔ Tax included
+    <div class="product-image-wrap">
+      <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?q=80&w=1200&auto=format&fit=crop" class="product-image">
     </div>
 
-  </div>
+    <div class="product-content">
 
-</div>
+      <div class="product-title">
+        Smart Watch
+      </div>
 
-<!-- FIREBASE -->
+      <div class="product-description">
+        Elegant fitness and lifestyle smartwatch with premium design.
+      </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+      <div class="price-row">
+        <div class="product-price">49,99 €</div>
+        <button class="view-btn">View</button>
+      </div>
 
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    </div>
 
-<script>
+  </a>
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDBYtMrRsnfHS8QMz8UgMjVmrBJ92siSbU",
-  authDomain: "vacuum-cleaner-e8857.firebaseapp.com",
-  projectId: "vacuum-cleaner-e8857"
-};
+  <!-- PRODUCT 3 -->
 
-firebase.initializeApp(firebaseConfig);
+  <a href="product3.html" class="card">
 
-const db = firebase.firestore();
+    <div class="product-image-wrap">
+      <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop" class="product-image">
+    </div>
 
-</script>
+    <div class="product-content">
 
-<!-- BUY -->
+      <div class="product-title">
+        Wireless Headphones
+      </div>
 
-<script>
+      <div class="product-description">
+        Immersive audio experience with luxury minimal aesthetics.
+      </div>
 
-async function handleBuy(){
+      <div class="price-row">
+        <div class="product-price">69,99 €</div>
+        <button class="view-btn">View</button>
+      </div>
 
-  try{
+    </div>
 
-    const ref = db.collection("product").doc("vacuum");
+  </a>
 
-    const doc = await ref.get();
+  <!-- PRODUCT 4 -->
 
-    let stock = doc.data().stock;
+  <a href="product4.html" class="card">
 
-    if(stock <= 0){
-      return alert("Sold Out");
-    }
+    <div class="product-image-wrap">
+      <img src="https://images.unsplash.com/photo-1580910051074-3eb694886505?q=80&w=1200&auto=format&fit=crop" class="product-image">
+    </div>
 
-    document.getElementById("buyBtn").innerText =
-      "Processing...";
+    <div class="product-content">
 
-    document.getElementById("buyBtnTop").innerText =
-      "Processing...";
+      <div class="product-title">
+        Portable Speaker
+      </div>
 
-    await ref.update({
-      stock: stock - 1
-    });
+      <div class="product-description">
+        Deep bass portable Bluetooth speaker with premium finish.
+      </div>
 
-    window.location.href =
-      "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
+      <div class="price-row">
+        <div class="product-price">39,99 €</div>
+        <button class="view-btn">View</button>
+      </div>
 
-  }catch(e){
+    </div>
 
-    alert("Error");
+  </a>
 
-  }
+  <!-- PRODUCT 5 -->
 
-}
+  <a href="product5.html" class="card">
 
-document.getElementById("buyBtn").onclick =
-  handleBuy;
+    <div class="product-image-wrap">
+      <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1200&auto=format&fit=crop" class="product-image">
+    </div>
 
-document.getElementById("buyBtnTop").onclick =
-  handleBuy;
+    <div class="product-content">
 
-</script>
+      <div class="product-title">
+        Mechanical Keyboard
+      </div>
 
-<!-- STOCK -->
+      <div class="product-description">
+        Premium mechanical keyboard built for productivity and gaming.
+      </div>
 
-<script>
+      <div class="price-row">
+        <div class="product-price">79,99 €</div>
+        <button class="view-btn">View</button>
+      </div>
 
-db.collection("product")
-.doc("vacuum")
-.onSnapshot((doc)=>{
+    </div>
 
-  let stock = doc.data().stock;
+  </a>
 
-  document.getElementById("stockText").innerText =
-    stock > 0
-      ? `In stock: ${stock}`
-      : `Out of stock`;
+  <!-- PRODUCT 6 -->
 
-});
+  <a href="product6.html" class="card">
 
-</script>
+    <div class="product-image-wrap">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" class="product-image">
+    </div>
 
-<!-- GALLERY -->
+    <div class="product-content">
 
-<script>
+      <div class="product-title">
+        Laptop Stand
+      </div>
 
-function setActive(el){
+      <div class="product-description">
+        Minimal aluminum stand for modern workspace setups.
+      </div>
 
-  document
-    .querySelectorAll(".thumb")
-    .forEach(t => t.classList.remove("active"));
+      <div class="price-row">
+        <div class="product-price">29,99 €</div>
+        <button class="view-btn">View</button>
+      </div>
 
-  if(el){
-    el.classList.add("active");
-  }
+    </div>
 
-}
+  </a>
 
-function showImage(el, src){
+</section>
 
-  setActive(el);
+<!-- FOOTER -->
 
-  document.getElementById("mainMedia").innerHTML = `
-
-    <img
-      src="${src}"
-      style="opacity:0"
-      onload="this.style.opacity=1"
-    >
-
-  `;
-
-}
-
-function showVideo(el){
-
-  setActive(el);
-
-  document.getElementById("mainMedia").innerHTML = `
-
-    <video
-      width="100%"
-      height="100%"
-      controls
-      autoplay
-    >
-
-      <source
-        src="assets/product-video.mp4"
-        type="video/mp4"
-      >
-
-    </video>
-
-  `;
-
-}
-
-</script>
+<footer>
+  © 2026 NOVARA — Everything You Need
+</footer>
 
 </body>
 </html>
