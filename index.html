@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -8,6 +7,7 @@
 <title>NOVARA</title>
 
 <style>
+
 *{
   box-sizing:border-box;
 }
@@ -17,55 +17,64 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,sans-serif;
   background:#fff;
   color:#111;
+  overflow-x:hidden;
 }
 
-/* ❌ REMOVE ALL HEADER INFLUENCE */
+/* HEADER */
+
 header{
-  display:none;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:16px 20px;
+
+  border-bottom:1px solid #eee;
+  background:#fff;
+
+  position:sticky;
+  top:0;
+  z-index:100;
+
+  overflow:hidden;
 }
 
-/* 🔒 FIXED HERO CONTAINER (NO FLEX, NO AUTO CENTER IMPACT) */
+/* LOGO FIX */
 
-.hero{
-  width:100%;
-  padding:5px 0 0; /* MINIMAL SPACING */
-  text-align:center;
+.logo-wrap{
+  width:160px;
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
 }
-
-/* 🔥 LOGO IS NOW OUT OF LAYOUT DEPENDENCY */
 
 .logo{
-  height:210px;
+  height:52px;
   width:auto;
 
-  display:inline-block;
+  transform:scale(2.2);
+  transform-origin:left center;
 
-  /* animation does NOT affect layout */
-  animation: floatBrand 4s ease-in-out infinite;
-  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.08));
+  object-fit:contain;
 }
 
-/* FLOAT ONLY VISUAL (NO LAYOUT SHIFT) */
+/* BUTTON */
 
-@keyframes floatBrand{
-  0%{
-    transform:translateY(0px);
-  }
-  50%{
-    transform:translateY(-8px);
-  }
-  100%{
-    transform:translateY(0px);
-  }
+.top-btn{
+  background:#111;
+  color:white;
+  padding:12px 22px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:500;
+  transition:0.2s ease;
 }
 
-/* 🔒 FIXED DIVIDER SPACING (ABSOLUTE CONTROL) */
-
-.divider{
-  width:60px;
-  height:1px;
-  background:#ddd;
-  margin:2px auto 0; /* MINIMAL SPACING */
+.top-btn:hover{
+  opacity:0.92;
 }
 
 /* CONTAINER */
@@ -73,7 +82,7 @@ header{
 .container{
   max-width:1000px;
   margin:auto;
-  padding:10px 20px 30px 20px;
+  padding:22px 20px 40px;
 }
 
 /* MEDIA */
@@ -81,7 +90,7 @@ header{
 .media{
   width:100%;
   height:420px;
-  border-radius:18px;
+  border-radius:22px;
   overflow:hidden;
   background:#000;
   position:relative;
@@ -114,9 +123,15 @@ header{
   display:flex;
   gap:12px;
   margin-top:15px;
+
   overflow-x:auto;
+  overflow-y:hidden;
+
   scroll-snap-type:x mandatory;
-  padding-bottom:5px;
+
+  padding-bottom:6px;
+
+  -webkit-overflow-scrolling:touch;
 }
 
 .thumbs::-webkit-scrollbar{
@@ -125,13 +140,20 @@ header{
 
 .thumb{
   flex:0 0 auto;
-  width:75px;
-  height:75px;
-  border-radius:10px;
+
+  width:78px;
+  height:78px;
+
+  border-radius:14px;
+
   object-fit:cover;
+
   cursor:pointer;
+
   border:2px solid transparent;
+
   scroll-snap-align:start;
+
   transition:0.2s ease;
 }
 
@@ -146,61 +168,85 @@ header{
 /* CONTENT */
 
 .panel{
-  margin-top:30px;
-  text-align:center;
+  margin-top:34px;
 }
 
 h1{
-  font-size:34px;
-  margin-bottom:12px;
+  font-size:42px;
+  line-height:1.1;
+  margin-bottom:16px;
 }
 
 .price{
-  font-size:34px;
-  font-weight:600;
-  margin-bottom:10px;
+  font-size:38px;
+  font-weight:700;
+  margin-bottom:8px;
 }
+
+#stockText{
+  margin-top:6px;
+  font-size:15px;
+  color:#666;
+  margin-bottom:18px;
+}
+
+/* CTA */
 
 .cta{
   width:100%;
-  max-width:420px;
-  padding:16px;
+  padding:18px;
   border-radius:999px;
   border:none;
   background:#111;
   color:white;
-  font-size:16px;
+  font-size:17px;
+  font-weight:500;
   cursor:pointer;
-  margin-top:10px;
+  transition:0.2s ease;
 }
 
 .cta:hover{
   opacity:0.92;
 }
 
-#stockText{
-  margin-top:8px;
-  font-size:14px;
-  color:#555;
-  margin-bottom:10px;
-}
+/* INFO */
 
 .info{
-  margin-top:18px;
-  line-height:1.8;
+  margin-top:22px;
+  line-height:1.9;
   color:#444;
+  font-size:15px;
 }
 
 /* MOBILE */
 
 @media(max-width:768px){
 
+  header{
+    padding:14px 16px;
+  }
+
+  .logo-wrap{
+    width:135px;
+  }
+
   .logo{
-    height:150px;
+    height:44px;
+    transform:scale(2.1);
+  }
+
+  .top-btn{
+    padding:11px 18px;
+    font-size:14px;
+  }
+
+  .container{
+    padding:18px 14px 35px;
   }
 
   .media{
-    height:320px;
+    height:330px;
+    border-radius:20px;
   }
 
   h1{
@@ -208,22 +254,31 @@ h1{
   }
 
   .price{
-    font-size:28px;
+    font-size:30px;
   }
 
 }
-</style>
 
+</style>
 </head>
 
 <body>
 
-<!-- HERO (NO LAYOUT COUPLING) -->
+<!-- HEADER -->
 
-<section class="hero">
-  <img src="assets/novara-header.png" class="logo">
-  <div class="divider"></div>
-</section>
+<header>
+
+  <div class="logo-wrap">
+    <img src="assets/novara-header.png" class="logo">
+  </div>
+
+  <button id="buyBtnTop" class="top-btn">
+    Buy Now
+  </button>
+
+</header>
+
+<!-- PAGE -->
 
 <div class="container">
 
@@ -231,31 +286,64 @@ h1{
 
   <div class="media" id="mainMedia">
 
-```
-<div onclick="showVideo(this)" style="width:100%;height:100%;position:relative;cursor:pointer;">
+    <div
+      onclick="showVideo(this)"
+      style="
+        width:100%;
+        height:100%;
+        position:relative;
+        cursor:pointer;
+      "
+    >
 
-  <video width="100%" height="100%" preload="metadata">
-    <source src="assets/product-video.mp4" type="video/mp4">
-  </video>
+      <video width="100%" height="100%" preload="metadata">
 
-  <div class="play">▶</div>
+        <source
+          src="assets/product-video.mp4"
+          type="video/mp4"
+        >
 
-</div>
-```
+      </video>
+
+      <div class="play">▶</div>
+
+    </div>
 
   </div>
 
-  <!-- THUMBS -->
+  <!-- THUMBNAILS -->
 
   <div class="thumbs">
 
-```
-<img class="thumb active" src="assets/video-thumb.jpg" onclick="showVideo(this)">
-<img class="thumb" src="assets/image1.jpg" onclick="showImage(this,'assets/image1.jpg')">
-<img class="thumb" src="assets/image2.jpg" onclick="showImage(this,'assets/image2.jpg')">
-<img class="thumb" src="assets/image3.jpg" onclick="showImage(this,'assets/image3.jpg')">
-<img class="thumb" src="assets/image4.jpg" onclick="showImage(this,'assets/image4.jpg')">
-```
+    <img
+      class="thumb active"
+      src="assets/video-thumb.jpg"
+      onclick="showVideo(this)"
+    >
+
+    <img
+      class="thumb"
+      src="assets/image1.jpg"
+      onclick="showImage(this,'assets/image1.jpg')"
+    >
+
+    <img
+      class="thumb"
+      src="assets/image2.jpg"
+      onclick="showImage(this,'assets/image2.jpg')"
+    >
+
+    <img
+      class="thumb"
+      src="assets/image3.jpg"
+      onclick="showImage(this,'assets/image3.jpg')"
+    >
+
+    <img
+      class="thumb"
+      src="assets/image4.jpg"
+      onclick="showImage(this,'assets/image4.jpg')"
+    >
 
   </div>
 
@@ -263,21 +351,21 @@ h1{
 
   <div class="panel">
 
-```
-<h1>Premium Vacuum Cleaner</h1>
+    <h1>Premium Vacuum Cleaner</h1>
 
-<div class="price">24,99 €</div>
+    <div class="price">24,99 €</div>
 
-<p id="stockText">Loading...</p>
+    <p id="stockText">Loading...</p>
 
-<button id="buyBtn" class="cta">Buy Now</button>
+    <button id="buyBtn" class="cta">
+      Buy Now
+    </button>
 
-<div class="info">
-  ✔ Secure payment<br>
-  ✔ Free delivery<br>
-  ✔ Tax included
-</div>
-```
+    <div class="info">
+      ✔ Secure payment<br>
+      ✔ Free delivery<br>
+      ✔ Tax included
+    </div>
 
   </div>
 
@@ -290,6 +378,7 @@ h1{
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
 <script>
+
 const firebaseConfig = {
   apiKey: "AIzaSyDBYtMrRsnfHS8QMz8UgMjVmrBJ92siSbU",
   authDomain: "vacuum-cleaner-e8857.firebaseapp.com",
@@ -297,17 +386,21 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const db = firebase.firestore();
+
 </script>
 
 <!-- BUY -->
 
 <script>
+
 async function handleBuy(){
 
   try{
 
     const ref = db.collection("product").doc("vacuum");
+
     const doc = await ref.get();
 
     let stock = doc.data().stock;
@@ -316,7 +409,11 @@ async function handleBuy(){
       return alert("Sold Out");
     }
 
-    document.getElementById("buyBtn").innerText = "Processing...";
+    document.getElementById("buyBtn").innerText =
+      "Processing...";
+
+    document.getElementById("buyBtnTop").innerText =
+      "Processing...";
 
     await ref.update({
       stock: stock - 1
@@ -326,17 +423,25 @@ async function handleBuy(){
       "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
 
   }catch(e){
+
     alert("Error");
+
   }
 
 }
 
-document.getElementById("buyBtn").onclick = handleBuy;
+document.getElementById("buyBtn").onclick =
+  handleBuy;
+
+document.getElementById("buyBtnTop").onclick =
+  handleBuy;
+
 </script>
 
 <!-- STOCK -->
 
 <script>
+
 db.collection("product")
 .doc("vacuum")
 .onSnapshot((doc)=>{
@@ -344,27 +449,70 @@ db.collection("product")
   let stock = doc.data().stock;
 
   document.getElementById("stockText").innerText =
-    stock > 0 ? `In stock: ${stock}` : `Out of stock`;
+    stock > 0
+      ? `In stock: ${stock}`
+      : `Out of stock`;
 
 });
+
 </script>
 
 <!-- GALLERY -->
 
 <script>
+
+function setActive(el){
+
+  document
+    .querySelectorAll(".thumb")
+    .forEach(t => t.classList.remove("active"));
+
+  if(el){
+    el.classList.add("active");
+  }
+
+}
+
 function showImage(el, src){
+
+  setActive(el);
+
   document.getElementById("mainMedia").innerHTML = `
-    <img src="${src}" style="opacity:0" onload="this.style.opacity=1">
+
+    <img
+      src="${src}"
+      style="opacity:0"
+      onload="this.style.opacity=1"
+    >
+
   `;
+
 }
 
 function showVideo(el){
+
+  setActive(el);
+
   document.getElementById("mainMedia").innerHTML = `
-    <video width="100%" height="100%" controls autoplay>
-      <source src="assets/product-video.mp4" type="video/mp4">
+
+    <video
+      width="100%"
+      height="100%"
+      controls
+      autoplay
+    >
+
+      <source
+        src="assets/product-video.mp4"
+        type="video/mp4"
+      >
+
     </video>
+
   `;
+
 }
+
 </script>
 
 </body>
