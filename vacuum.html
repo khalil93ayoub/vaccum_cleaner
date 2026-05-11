@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>NOVARA</title>
+<title>NOVARA — Wireless Vacuum Cleaner</title>
 
 <style>
 
@@ -39,7 +39,7 @@ header{
   overflow:hidden;
 }
 
-/* LOGO FIX */
+/* LOGO */
 
 .logo-wrap{
   width:160px;
@@ -82,7 +82,7 @@ header{
 .container{
   max-width:1000px;
   margin:auto;
-  padding:22px 20px 40px;
+  padding:22px 20px 60px;
 }
 
 /* MEDIA */
@@ -90,7 +90,7 @@ header{
 .media{
   width:100%;
   height:420px;
-  border-radius:22px;
+  border-radius:24px;
   overflow:hidden;
   background:#000;
   position:relative;
@@ -122,12 +122,10 @@ header{
 .thumbs{
   display:flex;
   gap:12px;
-  margin-top:15px;
+  margin-top:16px;
 
   overflow-x:auto;
   overflow-y:hidden;
-
-  scroll-snap-type:x mandatory;
 
   padding-bottom:6px;
 
@@ -141,10 +139,10 @@ header{
 .thumb{
   flex:0 0 auto;
 
-  width:78px;
-  height:78px;
+  width:82px;
+  height:82px;
 
-  border-radius:14px;
+  border-radius:16px;
 
   object-fit:cover;
 
@@ -152,39 +150,45 @@ header{
 
   border:2px solid transparent;
 
-  scroll-snap-align:start;
-
   transition:0.2s ease;
-}
-
-.thumb:hover{
-  transform:scale(1.03);
 }
 
 .thumb.active{
   border-color:#111;
 }
 
+.thumb:hover{
+  transform:scale(1.03);
+}
+
 /* CONTENT */
 
 .panel{
-  margin-top:34px;
+  margin-top:36px;
 }
 
 h1{
   font-size:42px;
   line-height:1.1;
-  margin-bottom:16px;
+  margin-bottom:14px;
 }
 
 .price{
   font-size:38px;
   font-weight:700;
-  margin-bottom:8px;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  color:#555;
+  line-height:1.8;
+  margin-top:12px;
+  margin-bottom:24px;
+  font-size:15px;
 }
 
 #stockText{
-  margin-top:6px;
+  margin-top:10px;
   font-size:15px;
   color:#666;
   margin-bottom:18px;
@@ -218,6 +222,45 @@ h1{
   font-size:15px;
 }
 
+/* FEATURES */
+
+.features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+
+  margin-top:34px;
+}
+
+.feature{
+  background:#f5f5f5;
+  padding:16px;
+  border-radius:16px;
+  font-size:14px;
+}
+
+/* SPECS */
+
+.specs{
+  margin-top:48px;
+}
+
+.specs h2{
+  font-size:30px;
+  margin-bottom:20px;
+}
+
+.spec-row{
+  display:flex;
+  justify-content:space-between;
+
+  padding:18px 0;
+
+  border-bottom:1px solid #eee;
+
+  font-size:15px;
+}
+
 /* MOBILE */
 
 @media(max-width:768px){
@@ -241,20 +284,23 @@ h1{
   }
 
   .container{
-    padding:18px 14px 35px;
+    padding:18px 14px 45px;
   }
 
   .media{
-    height:330px;
-    border-radius:20px;
+    height:320px;
   }
 
   h1{
-    font-size:28px;
+    font-size:30px;
   }
 
   .price{
     font-size:30px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
   }
 
 }
@@ -351,9 +397,15 @@ h1{
 
   <div class="panel">
 
-    <h1>Premium Vacuum Cleaner</h1>
+    <h1>Wireless High-Power Car Vacuum Cleaner</h1>
 
     <div class="price">24,99 €</div>
+
+    <p class="subtitle">
+      Powerful cordless vacuum cleaner with dual wet & dry cleaning,
+      fast USB charging, reusable HEPA filter and compact portable design.
+      Perfect for cars, office and home cleaning.
+    </p>
 
     <p id="stockText">Loading...</p>
 
@@ -365,6 +417,69 @@ h1{
       ✔ Secure payment<br>
       ✔ Free delivery<br>
       ✔ Tax included
+    </div>
+
+    <!-- FEATURES -->
+
+    <div class="features">
+
+      <div class="feature">
+        ⚡ High-Power Suction
+      </div>
+
+      <div class="feature">
+        🔋 USB Rechargeable
+      </div>
+
+      <div class="feature">
+        💨 Wet & Dry Dual Use
+      </div>
+
+      <div class="feature">
+        🧼 Washable HEPA Filter
+      </div>
+
+      <div class="feature">
+        🚗 Perfect For Cars & Home
+      </div>
+
+      <div class="feature">
+        🔇 Low Noise Operation
+      </div>
+
+    </div>
+
+    <!-- SPECS -->
+
+    <div class="specs">
+
+      <h2>Specifications</h2>
+
+      <div class="spec-row">
+        <span>Charging Time</span>
+        <span>~2 Hours</span>
+      </div>
+
+      <div class="spec-row">
+        <span>Usage</span>
+        <span>Wet & Dry</span>
+      </div>
+
+      <div class="spec-row">
+        <span>Power</span>
+        <span>120W</span>
+      </div>
+
+      <div class="spec-row">
+        <span>Design</span>
+        <span>Cordless Handheld</span>
+      </div>
+
+      <div class="spec-row">
+        <span>Filter</span>
+        <span>Washable HEPA</span>
+      </div>
+
     </div>
 
   </div>
