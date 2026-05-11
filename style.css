@@ -457,3 +457,46 @@ footer{
   }
 
 }
+
+.subtitle{
+  color:#555;
+  line-height:1.8;
+  margin-top:12px;
+  margin-bottom:22px;
+  font-size:15px;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+
+  margin-top:24px;
+}
+
+.feature{
+  background:#f5f5f5;
+  padding:14px;
+  border-radius:14px;
+  font-size:14px;
+}
+
+.specs{
+  margin-top:40px;
+}
+
+.specs h2{
+  font-size:28px;
+  margin-bottom:18px;
+}
+
+.spec-row{
+  display:flex;
+  justify-content:space-between;
+
+  padding:16px 0;
+
+  border-bottom:1px solid #eee;
+
+  font-size:15px;
+}
