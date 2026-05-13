@@ -38,11 +38,21 @@ header{
 
 /* LOGO */
 
+.logo-link{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+}
+
 .logo{
-  height:48px;
-  width:auto;
+  height:42px;
+  width:42px;
   object-fit:contain;
-  display:block;
+  transition:0.25s ease;
+}
+
+.logo:hover{
+  transform:scale(1.06);
 }
 
 /* BUTTON */
@@ -252,10 +262,14 @@ h1{
 
 <header>
 
-  <img 
-    src="assets/novara-header.png" 
+  <a href="index.html" class="logo-link">
+
+  <img
+    src="assets/novara-icon.png"
     class="logo"
   >
+
+</a>
 
   <button 
     id="buyBtnTop"
