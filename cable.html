@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>NOVARA | 240W Fast Charging Cable</title>
+<title>NOVARA - Fast Charging Cable</title>
 
 <style>
+
 *{
   margin:0;
   padding:0;
@@ -24,29 +25,35 @@ body{
 header{
   position:sticky;
   top:0;
-  z-index:1000;
+  z-index:999;
   background:#fff;
   border-bottom:1px solid #eee;
-  padding:14px 18px;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
+  padding:14px 20px;
 }
+
+/* LOGO */
 
 .logo{
-  height:38px;
+  height:48px;
   width:auto;
   object-fit:contain;
+  display:block;
 }
 
+/* BUTTON */
+
 .top-btn{
+  border:none;
   background:#111;
   color:#fff;
-  border:none;
-  border-radius:999px;
   padding:12px 22px;
+  border-radius:999px;
   font-size:15px;
-  font-weight:600;
   cursor:pointer;
   transition:0.2s;
 }
@@ -58,56 +65,65 @@ header{
 /* PAGE */
 
 .container{
-  max-width:950px;
+  max-width:1000px;
   margin:auto;
-  padding:24px 18px 50px;
+  padding:24px 18px 60px;
 }
 
-/* MAIN MEDIA */
+/* MEDIA */
 
 .media{
   width:100%;
-  height:460px;
-  background:#000;
-  border-radius:28px;
+  height:440px;
+  background:#f7f7f7;
+  border-radius:24px;
   overflow:hidden;
   position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
+
+/* IMPORTANT FIX */
 
 .media img,
 .media video{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain; /* FIXED */
+  background:#fff;
 }
 
 /* PLAY BUTTON */
 
-.play-button{
+.play{
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  width:90px;
-  height:90px;
+  width:70px;
+  height:70px;
   border-radius:50%;
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(10px);
+  background:rgba(0,0,0,0.7);
+
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:34px;
-  color:white;
+
+  color:#fff;
+  font-size:28px;
 }
 
-/* GALLERY */
+/* THUMBNAILS */
 
 .thumbs{
   display:flex;
   gap:12px;
   overflow-x:auto;
   margin-top:16px;
-  padding-bottom:6px;
+  padding-bottom:4px;
+
   scrollbar-width:none;
 }
 
@@ -116,35 +132,41 @@ header{
 }
 
 .thumb{
-  min-width:82px;
-  width:82px;
-  height:82px;
-  border-radius:18px;
-  object-fit:cover;
+  width:78px;
+  height:78px;
+  flex:0 0 auto;
+
+  border-radius:14px;
+  overflow:hidden;
+
   cursor:pointer;
+
   border:2px solid transparent;
+
   transition:0.2s;
   background:#f5f5f5;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .thumb.active{
   border-color:#111;
 }
 
-.thumb:hover{
-  transform:scale(1.04);
-}
-
-/* PRODUCT INFO */
+/* CONTENT */
 
 .panel{
-  margin-top:34px;
+  margin-top:36px;
 }
 
 h1{
   font-size:42px;
   line-height:1.1;
-  margin-bottom:16px;
+  margin-bottom:14px;
 }
 
 .price{
@@ -154,21 +176,25 @@ h1{
 }
 
 #stockText{
-  font-size:16px;
+  font-size:15px;
   color:#666;
   margin-bottom:18px;
 }
+
+/* CTA */
 
 .cta{
   width:100%;
   border:none;
   background:#111;
-  color:white;
+  color:#fff;
+
   padding:18px;
   border-radius:999px;
+
   font-size:17px;
-  font-weight:600;
   cursor:pointer;
+
   transition:0.2s;
 }
 
@@ -176,36 +202,21 @@ h1{
   opacity:0.92;
 }
 
-.features{
-  margin-top:24px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
+/* INFO */
 
-.feature{
-  background:#f8f8f8;
-  border-radius:20px;
-  padding:18px;
-}
-
-.feature h3{
-  font-size:16px;
-  margin-bottom:8px;
-}
-
-.feature p{
-  font-size:14px;
-  color:#666;
-  line-height:1.5;
+.info{
+  margin-top:22px;
+  line-height:1.9;
+  color:#444;
+  font-size:15px;
 }
 
 /* DESCRIPTION */
 
-.description{
+.desc{
   margin-top:34px;
+  color:#333;
   line-height:1.8;
-  color:#444;
   font-size:15px;
 }
 
@@ -213,28 +224,25 @@ h1{
 
 @media(max-width:768px){
 
+  .logo{
+    height:42px;
+  }
+
   .media{
-    height:340px;
-    border-radius:24px;
+    height:360px;
+    border-radius:22px;
   }
 
   h1{
-    font-size:32px;
+    font-size:34px;
   }
 
   .price{
     font-size:34px;
   }
 
-  .features{
-    grid-template-columns:1fr;
-  }
-
-  .logo{
-    height:32px;
-  }
-
 }
+
 </style>
 </head>
 
@@ -244,9 +252,15 @@ h1{
 
 <header>
 
-  <img src="assets/novara-header.png" class="logo">
+  <img 
+    src="assets/novara-header.png" 
+    class="logo"
+  >
 
-  <button id="buyBtnTop" class="top-btn">
+  <button 
+    id="buyBtnTop"
+    class="top-btn"
+  >
     Buy Now
   </button>
 
@@ -256,12 +270,15 @@ h1{
 
 <div class="container">
 
-  <!-- MAIN MEDIA -->
+  <!-- MEDIA -->
 
-  <div class="media" id="mainMedia">
+  <div 
+    class="media"
+    id="mainMedia"
+  >
 
     <div
-      onclick="showVideo(this)"
+      onclick="showVideo()"
       style="
         width:100%;
         height:100%;
@@ -274,64 +291,70 @@ h1{
         width="100%"
         height="100%"
         preload="metadata"
-        muted
       >
-        <source
+        <source 
           src="assets/cable-video.mp4"
           type="video/mp4"
         >
       </video>
 
-      <div class="play-button">
-        ▶
-      </div>
+      <div class="play">▶</div>
 
     </div>
 
   </div>
 
-  <!-- THUMBNAILS -->
+  <!-- THUMBS -->
 
   <div class="thumbs">
 
-    <img
-      src="assets/cable-thumb.jpg"
+    <!-- VIDEO -->
+
+    <div 
       class="thumb active"
       onclick="showVideo(this)"
     >
+      <img src="assets/cable-thumb.jpg">
+    </div>
 
-    <img
-      src="assets/cable1.jpg"
+    <!-- IMAGES -->
+
+    <div 
       class="thumb"
       onclick="showImage(this,'assets/cable1.jpg')"
     >
+      <img src="assets/cable1.jpg">
+    </div>
 
-    <img
-      src="assets/cable2.jpg"
+    <div 
       class="thumb"
       onclick="showImage(this,'assets/cable2.jpg')"
     >
+      <img src="assets/cable2.jpg">
+    </div>
 
-    <img
-      src="assets/cable3.jpg"
+    <div 
       class="thumb"
       onclick="showImage(this,'assets/cable3.jpg')"
     >
+      <img src="assets/cable3.jpg">
+    </div>
 
-    <img
-      src="assets/cable4.jpg"
+    <div 
       class="thumb"
       onclick="showImage(this,'assets/cable4.jpg')"
     >
+      <img src="assets/cable4.jpg">
+    </div>
 
   </div>
 
-  <!-- PRODUCT INFO -->
+  <!-- CONTENT -->
 
   <div class="panel">
 
     <h1>
-      240W Super Fast Charging Cable
+      240W Fast Charging Cable
     </h1>
 
     <div class="price">
@@ -342,58 +365,28 @@ h1{
       Loading...
     </div>
 
-    <button id="buyBtn" class="cta">
+    <button
+      id="buyBtn"
+      class="cta"
+    >
       Buy Now
     </button>
 
-    <!-- FEATURES -->
-
-    <div class="features">
-
-      <div class="feature">
-        <h3>⚡ 240W Fast Charging</h3>
-        <p>
-          Ultra fast charging speed for smartphones,
-          laptops, tablets and more.
-        </p>
-      </div>
-
-      <div class="feature">
-        <h3>💡 LED Power Display</h3>
-        <p>
-          Built-in LED display showing charging power
-          in real time.
-        </p>
-      </div>
-
-      <div class="feature">
-        <h3>🔄 Rotating Elbow Design</h3>
-        <p>
-          Premium 90° rotating connector for gaming,
-          comfort and durability.
-        </p>
-      </div>
-
-      <div class="feature">
-        <h3>🔌 4-in-1 Universal Cable</h3>
-        <p>
-          Compatible with USB-C devices,
-          phones, tablets, printers and more.
-        </p>
-      </div>
-
+    <div class="info">
+      ✔ 240W Super Fast Charging<br>
+      ✔ LED Power Display<br>
+      ✔ USB-C Multi Device Support<br>
+      ✔ Premium Braided Cable<br>
+      ✔ Fast Delivery
     </div>
 
-    <!-- DESCRIPTION -->
+    <div class="desc">
 
-    <div class="description">
+      High-performance 240W charging cable designed for ultra-fast charging and stable data transfer.
 
-      ✔ Premium braided cable design<br>
-      ✔ Durable aluminum alloy connectors<br>
-      ✔ Smart protection against overheating<br>
-      ✔ Perfect for iPhone, Samsung, Xiaomi, tablets & laptops<br>
-      ✔ Luxury minimalist NOVARA design<br>
-      ✔ Fast EU shipping included
+      Compatible with smartphones, tablets, laptops, gaming devices, printers, and more.
+
+      Features a premium braided design, rotating elbow connector, and integrated LED display for real-time power monitoring.
 
     </div>
 
@@ -408,6 +401,7 @@ h1{
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
 <script>
+
 const firebaseConfig = {
   apiKey: "AIzaSyDBYtMrRsnfHS8QMz8UgMjVmrBJ92siSbU",
   authDomain: "vacuum-cleaner-e8857.firebaseapp.com",
@@ -417,11 +411,13 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
+
 </script>
 
-<!-- BUY LOGIC -->
+<!-- BUY -->
 
 <script>
+
 async function handleBuy(){
 
   try{
@@ -430,25 +426,14 @@ async function handleBuy(){
 
     const doc = await ref.get();
 
-    let stock = doc.data().stock;
+    const stock = doc.data().stock;
 
     if(stock <= 0){
-      alert("Sold Out");
-      return;
+      return alert("Sold Out");
     }
 
-    document.getElementById("buyBtn").innerText =
-      "Processing...";
-
-    document.getElementById("buyBtnTop").innerText =
-      "Processing...";
-
-    await ref.update({
-      stock: stock - 1
-    });
-
     window.location.href =
-      "https://buy.stripe.com/test_XXXXXXXXXXXX";
+      "https://buy.stripe.com/YOUR_STRIPE_LINK";
 
   }catch(e){
 
@@ -458,60 +443,53 @@ async function handleBuy(){
 
 }
 
-document.getElementById("buyBtn").onclick =
-  handleBuy;
+document.getElementById("buyBtn").onclick = handleBuy;
+document.getElementById("buyBtnTop").onclick = handleBuy;
 
-document.getElementById("buyBtnTop").onclick =
-  handleBuy;
 </script>
 
-<!-- LIVE STOCK -->
+<!-- STOCK -->
 
 <script>
+
 db.collection("product")
 .doc("cable")
 .onSnapshot((doc)=>{
 
-  if(!doc.exists){
-    document.getElementById("stockText").innerText =
-      "Out of stock";
-    return;
-  }
-
-  let stock = doc.data().stock;
+  const stock = doc.data().stock;
 
   document.getElementById("stockText").innerText =
     stock > 0
-    ? `In stock: ${stock}`
-    : `Out of stock`;
+      ? `In stock: ${stock}`
+      : `Out of stock`;
 
 });
+
 </script>
 
 <!-- GALLERY -->
 
 <script>
+
 function setActive(el){
 
   document
     .querySelectorAll(".thumb")
     .forEach(t => t.classList.remove("active"));
 
-  el.classList.add("active");
+  if(el){
+    el.classList.add("active");
+  }
 
 }
 
-function showImage(el, src){
+function showImage(el,src){
 
   setActive(el);
 
   document.getElementById("mainMedia").innerHTML = `
-  
-    <img
-      src="${src}"
-      style="opacity:0"
-      onload="this.style.opacity=1"
-    >
+
+    <img src="${src}">
 
   `;
 
@@ -523,31 +501,22 @@ function showVideo(el){
 
   document.getElementById("mainMedia").innerHTML = `
 
-    <div
-      style="
-        width:100%;
-        height:100%;
-        position:relative;
-      "
+    <video
+      width="100%"
+      height="100%"
+      controls
+      autoplay
     >
-
-      <video
-        width="100%"
-        height="100%"
-        controls
-        autoplay
+      <source
+        src="assets/cable-video.mp4"
+        type="video/mp4"
       >
-        <source
-          src="assets/cable-video.mp4"
-          type="video/mp4"
-        >
-      </video>
-
-    </div>
+    </video>
 
   `;
 
 }
+
 </script>
 
 </body>
