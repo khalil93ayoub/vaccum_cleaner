@@ -44,11 +44,21 @@ header{
   text-decoration:none;
 }
 
+.logo-link{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+}
+
 .logo{
-  height:42px;
-  width:42px;
+  height:56px;
+  width:auto;
   object-fit:contain;
   transition:0.25s ease;
+}
+
+.logo:hover{
+  transform:scale(1.04);
 }
 
 .logo:hover{
@@ -264,14 +274,14 @@ h1{
 
   <a href="index.html" class="logo-link">
 
-  <img
-    src="assets/novara-icon.png"
-    class="logo"
-  >
+    <img
+      src="assets/novara-icon.png"
+      class="logo"
+    >
 
-</a>
+  </a>
 
-  <button 
+  <button
     id="buyBtnTop"
     class="top-btn"
   >
