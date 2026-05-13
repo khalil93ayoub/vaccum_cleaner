@@ -40,15 +40,27 @@ header{
   backdrop-filter:blur(14px);
 }
 
+.logo-link{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+}
+
 .logo{
-  height:52px;
-  width:auto;
+  height:42px;
+  width:42px;
   object-fit:contain;
 
   filter:
     brightness(0)
     invert(1)
-    drop-shadow(0 0 12px rgba(255,255,255,0.35));
+    drop-shadow(0 0 10px rgba(255,255,255,0.25));
+
+  transition:0.25s ease;
+}
+
+.logo:hover{
+  transform:scale(1.06);
 }
 
 .top-btn{
@@ -360,10 +372,14 @@ footer{
 
 <header>
 
+<a href="index.html" class="logo-link">
+
   <img
-    src="assets/novara-header.png"
+    src="assets/novara-icon.png"
     class="logo"
   >
+
+</a>
 
   <button
     id="buyBtnTop"
