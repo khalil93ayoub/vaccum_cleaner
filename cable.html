@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>NOVARA | 240W Fast Charging Cable</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#fff;
+  color:#111;
+}
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#fff;
+  border-bottom:1px solid #eee;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  height:38px;
+  width:auto;
+  object-fit:contain;
+}
+
+.top-btn{
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:999px;
+  padding:12px 22px;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.top-btn:hover{
+  opacity:0.9;
+}
+
+/* PAGE */
+
+.container{
+  max-width:950px;
+  margin:auto;
+  padding:24px 18px 50px;
+}
+
+/* MAIN MEDIA */
+
+.media{
+  width:100%;
+  height:460px;
+  background:#000;
+  border-radius:28px;
+  overflow:hidden;
+  position:relative;
+}
+
+.media img,
+.media video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* PLAY BUTTON */
+
+.play-button{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  color:white;
+}
+
+/* GALLERY */
+
+.thumbs{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  margin-top:16px;
+  padding-bottom:6px;
+  scrollbar-width:none;
+}
+
+.thumbs::-webkit-scrollbar{
+  display:none;
+}
+
+.thumb{
+  min-width:82px;
+  width:82px;
+  height:82px;
+  border-radius:18px;
+  object-fit:cover;
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:0.2s;
+  background:#f5f5f5;
+}
+
+.thumb.active{
+  border-color:#111;
+}
+
+.thumb:hover{
+  transform:scale(1.04);
+}
+
+/* PRODUCT INFO */
+
+.panel{
+  margin-top:34px;
+}
+
+h1{
+  font-size:42px;
+  line-height:1.1;
+  margin-bottom:16px;
+}
+
+.price{
+  font-size:42px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+#stockText{
+  font-size:16px;
+  color:#666;
+  margin-bottom:18px;
+}
+
+.cta{
+  width:100%;
+  border:none;
+  background:#111;
+  color:white;
+  padding:18px;
+  border-radius:999px;
+  font-size:17px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.cta:hover{
+  opacity:0.92;
+}
+
+.features{
+  margin-top:24px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.feature{
+  background:#f8f8f8;
+  border-radius:20px;
+  padding:18px;
+}
+
+.feature h3{
+  font-size:16px;
+  margin-bottom:8px;
+}
+
+.feature p{
+  font-size:14px;
+  color:#666;
+  line-height:1.5;
+}
+
+/* DESCRIPTION */
+
+.description{
+  margin-top:34px;
+  line-height:1.8;
+  color:#444;
+  font-size:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .media{
+    height:340px;
+    border-radius:24px;
+  }
+
+  h1{
+    font-size:32px;
+  }
+
+  .price{
+    font-size:34px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+  .logo{
+    height:32px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+  <img src="assets/novara-header.png" class="logo">
+
+  <button id="buyBtnTop" class="top-btn">
+    Buy Now
+  </button>
+
+</header>
+
+<!-- PAGE -->
+
+<div class="container">
+
+  <!-- MAIN MEDIA -->
+
+  <div class="media" id="mainMedia">
+
+    <div
+      onclick="showVideo(this)"
+      style="
+        width:100%;
+        height:100%;
+        position:relative;
+        cursor:pointer;
+      "
+    >
+
+      <video
+        width="100%"
+        height="100%"
+        preload="metadata"
+        muted
+      >
+        <source
+          src="assets/cable-video.mp4"
+          type="video/mp4"
+        >
+      </video>
+
+      <div class="play-button">
+        ▶
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- THUMBNAILS -->
+
+  <div class="thumbs">
+
+    <img
+      src="assets/cable-thumb.jpg"
+      class="thumb active"
+      onclick="showVideo(this)"
+    >
+
+    <img
+      src="assets/cable1.jpg"
+      class="thumb"
+      onclick="showImage(this,'assets/cable1.jpg')"
+    >
+
+    <img
+      src="assets/cable2.jpg"
+      class="thumb"
+      onclick="showImage(this,'assets/cable2.jpg')"
+    >
+
+    <img
+      src="assets/cable3.jpg"
+      class="thumb"
+      onclick="showImage(this,'assets/cable3.jpg')"
+    >
+
+    <img
+      src="assets/cable4.jpg"
+      class="thumb"
+      onclick="showImage(this,'assets/cable4.jpg')"
+    >
+
+  </div>
+
+  <!-- PRODUCT INFO -->
+
+  <div class="panel">
+
+    <h1>
+      240W Super Fast Charging Cable
+    </h1>
+
+    <div class="price">
+      8,99 €
+    </div>
+
+    <div id="stockText">
+      Loading...
+    </div>
+
+    <button id="buyBtn" class="cta">
+      Buy Now
+    </button>
+
+    <!-- FEATURES -->
+
+    <div class="features">
+
+      <div class="feature">
+        <h3>⚡ 240W Fast Charging</h3>
+        <p>
+          Ultra fast charging speed for smartphones,
+          laptops, tablets and more.
+        </p>
+      </div>
+
+      <div class="feature">
+        <h3>💡 LED Power Display</h3>
+        <p>
+          Built-in LED display showing charging power
+          in real time.
+        </p>
+      </div>
+
+      <div class="feature">
+        <h3>🔄 Rotating Elbow Design</h3>
+        <p>
+          Premium 90° rotating connector for gaming,
+          comfort and durability.
+        </p>
+      </div>
+
+      <div class="feature">
+        <h3>🔌 4-in-1 Universal Cable</h3>
+        <p>
+          Compatible with USB-C devices,
+          phones, tablets, printers and more.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- DESCRIPTION -->
+
+    <div class="description">
+
+      ✔ Premium braided cable design<br>
+      ✔ Durable aluminum alloy connectors<br>
+      ✔ Smart protection against overheating<br>
+      ✔ Perfect for iPhone, Samsung, Xiaomi, tablets & laptops<br>
+      ✔ Luxury minimalist NOVARA design<br>
+      ✔ Fast EU shipping included
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDBYtMrRsnfHS8QMz8UgMjVmrBJ92siSbU",
+  authDomain: "vacuum-cleaner-e8857.firebaseapp.com",
+  projectId: "vacuum-cleaner-e8857"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+</script>
+
+<!-- BUY LOGIC -->
+
+<script>
+async function handleBuy(){
+
+  try{
+
+    const ref = db.collection("product").doc("cable");
+
+    const doc = await ref.get();
+
+    let stock = doc.data().stock;
+
+    if(stock <= 0){
+      alert("Sold Out");
+      return;
+    }
+
+    document.getElementById("buyBtn").innerText =
+      "Processing...";
+
+    document.getElementById("buyBtnTop").innerText =
+      "Processing...";
+
+    await ref.update({
+      stock: stock - 1
+    });
+
+    window.location.href =
+      "https://buy.stripe.com/test_XXXXXXXXXXXX";
+
+  }catch(e){
+
+    alert("Error");
+
+  }
+
+}
+
+document.getElementById("buyBtn").onclick =
+  handleBuy;
+
+document.getElementById("buyBtnTop").onclick =
+  handleBuy;
+</script>
+
+<!-- LIVE STOCK -->
+
+<script>
+db.collection("product")
+.doc("cable")
+.onSnapshot((doc)=>{
+
+  if(!doc.exists){
+    document.getElementById("stockText").innerText =
+      "Out of stock";
+    return;
+  }
+
+  let stock = doc.data().stock;
+
+  document.getElementById("stockText").innerText =
+    stock > 0
+    ? `In stock: ${stock}`
+    : `Out of stock`;
+
+});
+</script>
+
+<!-- GALLERY -->
+
+<script>
+function setActive(el){
+
+  document
+    .querySelectorAll(".thumb")
+    .forEach(t => t.classList.remove("active"));
+
+  el.classList.add("active");
+
+}
+
+function showImage(el, src){
+
+  setActive(el);
+
+  document.getElementById("mainMedia").innerHTML = `
+  
+    <img
+      src="${src}"
+      style="opacity:0"
+      onload="this.style.opacity=1"
+    >
+
+  `;
+
+}
+
+function showVideo(el){
+
+  setActive(el);
+
+  document.getElementById("mainMedia").innerHTML = `
+
+    <div
+      style="
+        width:100%;
+        height:100%;
+        position:relative;
+      "
+    >
+
+      <video
+        width="100%"
+        height="100%"
+        controls
+        autoplay
+      >
+        <source
+          src="assets/cable-video.mp4"
+          type="video/mp4"
+        >
+      </video>
+
+    </div>
+
+  `;
+
+}
+</script>
+
+</body>
+</html>
