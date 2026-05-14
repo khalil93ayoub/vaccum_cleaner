@@ -1,1 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>NOVARA — Wireless Vacuum Cleaner</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#fff;
+  color:#111;
+  overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  padding:16px 20px;
+
+  border-bottom:1px solid #eee;
+  background:#fff;
+
+  position:sticky;
+  top:0;
+  z-index:100;
+
+  overflow:hidden;
+}
+
+/* LOGO */
+
+.logo-wrap{
+  width:160px;
+  overflow:hidden;
+
+  display:flex;
+  align-items:center;
+}
+
+.logo-link{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+}
+
+.logo{
+  height:42px;
+  width:42px;
+  object-fit:contain;
+  transition:0.25s ease;
+}
+
+.logo:hover{
+  transform:scale(1.06);
+}
+
+/* BUTTON */
+
+.top-btn{
+  background:#111;
+  color:white;
+  padding:12px 22px;
+  border-radius:999px;
+  border:none;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:500;
+  transition:0.2s ease;
+}
+
+.top-btn:hover{
+  opacity:0.92;
+}
+
+/* CONTAINER */
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:22px 20px 60px;
+}
+
+/* MEDIA */
+
+.media{
+  width:100%;
+  height:420px;
+  border-radius:24px;
+  overflow:hidden;
+  background:#000;
+  position:relative;
+}
+
+.media img,
+.media video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+/* PLAY */
+
+.play{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:rgba(0,0,0,0.6);
+  color:white;
+  font-size:30px;
+  padding:16px 20px;
+  border-radius:50%;
+}
+
+/* THUMBS */
+
+.thumbs{
+  display:flex;
+  gap:12px;
+  margin-top:16px;
+
+  overflow-x:auto;
+  overflow-y:hidden;
+
+  padding-bottom:6px;
+
+  -webkit-overflow-scrolling:touch;
+}
+
+.thumbs::-webkit-scrollbar{
+  display:none;
+}
+
+.thumb{
+  flex:0 0 auto;
+
+  width:82px;
+  height:82px;
+
+  border-radius:16px;
+
+  object-fit:cover;
+
+  cursor:pointer;
+
+  border:2px solid transparent;
+
+  transition:0.2s ease;
+}
+
+.thumb.active{
+  border-color:#111;
+}
+
+.thumb:hover{
+  transform:scale(1.03);
+}
+
+/* CONTENT */
+
+.panel{
+  margin-top:36px;
+}
+
+h1{
+  font-size:42px;
+  line-height:1.1;
+  margin-bottom:14px;
+}
+
+.price{
+  font-size:38px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  color:#555;
+  line-height:1.8;
+  margin-top:12px;
+  margin-bottom:24px;
+  font-size:15px;
+}
+
+#stockText{
+  margin-top:10px;
+  font-size:15px;
+  color:#666;
+  margin-bottom:18px;
+}
+
+/* CTA */
+
+.cta{
+  width:100%;
+  padding:18px;
+  border-radius:999px;
+  border:none;
+  background:#111;
+  color:white;
+  font-size:17px;
+  font-weight:500;
+  cursor:pointer;
+  transition:0.2s ease;
+}
+
+.cta:hover{
+  opacity:0.92;
+}
+
+/* INFO */
+
+.info{
+  margin-top:22px;
+  line-height:1.9;
+  color:#444;
+  font-size:15px;
+}
+
+/* FEATURES */
+
+.features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+
+  margin-top:34px;
+}
+
+.feature{
+  background:#f5f5f5;
+  padding:16px;
+  border-radius:16px;
+  font-size:14px;
+}
+
+/* SPECS */
+
+.specs{
+  margin-top:48px;
+}
+
+.specs h2{
+  font-size:30px;
+  margin-bottom:20px;
+}
+
+.spec-row{
+  display:flex;
+  justify-content:space-between;
+
+  padding:18px 0;
+
+  border-bottom:1px solid #eee;
+
+  font-size:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  header{
+    padding:14px 16px;
+  }
+
+  .logo-wrap{
+    width:135px;
+  }
+
+  .logo{
+    height:44px;
+    transform:scale(2.1);
+  }
+
+  .top-btn{
+    padding:11px 18px;
+    font-size:14px;
+  }
+
+  .container{
+    padding:18px 14px 45px;
+  }
+
+  .media{
+    height:320px;
+  }
+
+  h1{
+    font-size:30px;
+  }
+
+  .price{
+    font-size:30px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+  <div class="logo-wrap">
+    <a href="../" class="logo-link">
+
+  <img
+    src="assets/novara-icon.png"
+    class="logo"
+  >
+
+</a>
+  </div>
+
+  <button id="buyBtnTop" class="top-btn">
+    Buy Now
+  </button>
+
+</header>
+
+<!-- PAGE -->
+
+<div class="container">
+
+  <!-- MEDIA -->
+
+  <div class="media" id="mainMedia">
+
+    <div
+      onclick="showVideo(this)"
+      style="
+        width:100%;
+        height:100%;
+        position:relative;
+        cursor:pointer;
+      "
+    >
+
+      <video width="100%" height="100%" preload="metadata">
+
+        <source
+          src="assets/product-video.mp4"
+          type="video/mp4"
+        >
+
+      </video>
+
+      <div class="play">▶</div>
+
+    </div>
+
+  </div>
+
+  <!-- THUMBNAILS -->
+
+  <div class="thumbs">
+
+    <img
+      class="thumb active"
+      src="assets/video-thumb.jpg"
+      onclick="showVideo(this)"
+    >
+
+    <img
+      class="thumb"
+      src="assets/image1.jpg"
+      onclick="showImage(this,'assets/image1.jpg')"
+    >
+
+    <img
+      class="thumb"
+      src="assets/image2.jpg"
+      onclick="showImage(this,'assets/image2.jpg')"
+    >
+
+    <img
+      class="thumb"
+      src="assets/image3.jpg"
+      onclick="showImage(this,'assets/image3.jpg')"
+    >
+
+    <img
+      class="thumb"
+      src="assets/image4.jpg"
+      onclick="showImage(this,'assets/image4.jpg')"
+    >
+
+  </div>
+
+  <!-- CONTENT -->
+
+  <div class="panel">
+
+    <h1>Wireless High-Power Car Vacuum Cleaner</h1>
+
+    <div class="price">24,99 €</div>
+
+    <p class="subtitle">
+      Powerful cordless vacuum cleaner with dual wet & dry cleaning,
+      fast USB charging, reusable HEPA filter and compact portable design.
+      Perfect for cars, office and home cleaning.
+    </p>
+
+    <p id="stockText">Loading...</p>
+
+    <button id="buyBtn" class="cta">
+      Buy Now
+    </button>
+
+    <div class="info">
+      ✔ Secure payment<br>
+      ✔ Free delivery<br>
+      ✔ Tax included
+    </div>
+
+    <!-- FEATURES -->
+
+    <div class="features">
+
+      <div class="feature">
+        ⚡ High-Power Suction
+      </div>
+
+      <div class="feature">
+        🔋 USB Rechargeable
+      </div>
+
+      <div class="feature">
+        💨 Wet & Dry Dual Use
+      </div>
+
+      <div class="feature">
+        🧼 Washable HEPA Filter
+      </div>
+
+      <div class="feature">
+        🚗 Perfect For Cars & Home
+      </div>
+
+      <div class="feature">
+        🔇 Low Noise Operation
+      </div>
+
+    </div>
+
+    <!-- SPECS -->
+
+    <div class="specs">
+
+      <h2>Specifications</h2>
+
+      <div class="spec-row">
+        <span>Charging Time</span>
+        <span>~2 Hours</span>
+      </div>
+
+      <div class="spec-row">
+        <span>Usage</span>
+        <span>Wet & Dry</span>
+      </div>
+
+      <div class="spec-row">
+        <span>Power</span>
+        <span>120W</span>
+      </div>
+
+      <div class="spec-row">
+        <span>Design</span>
+        <span>Cordless Handheld</span>
+      </div>
+
+      <div class="spec-row">
+        <span>Filter</span>
+        <span>Washable HEPA</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDBYtMrRsnfHS8QMz8UgMjVmrBJ92siSbU",
+  authDomain: "vacuum-cleaner-e8857.firebaseapp.com",
+  projectId: "vacuum-cleaner-e8857"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+</script>
+
+<!-- BUY -->
+
+<script>
+
+async function handleBuy(){
+
+  try{
+
+    const ref = db.collection("product").doc("vacuum");
+
+    const doc = await ref.get();
+
+    let stock = doc.data().stock;
+
+    if(stock <= 0){
+      return alert("Sold Out");
+    }
+
+    document.getElementById("buyBtn").innerText =
+      "Processing...";
+
+    document.getElementById("buyBtnTop").innerText =
+      "Processing...";
+
+    await ref.update({
+      stock: stock - 1
+    });
+
+    window.location.href =
+      "https://buy.stripe.com/8x2bJ13E0ehYb5N6hxcIE00";
+
+  }catch(e){
+
+    alert("Error");
+
+  }
+
+}
+
+document.getElementById("buyBtn").onclick =
+  handleBuy;
+
+document.getElementById("buyBtnTop").onclick =
+  handleBuy;
+
+</script>
+
+<!-- STOCK -->
+
+<script>
+
+db.collection("product")
+.doc("vacuum")
+.onSnapshot((doc)=>{
+
+  let stock = doc.data().stock;
+
+  document.getElementById("stockText").innerText =
+    stock > 0
+      ? `In stock: ${stock}`
+      : `Out of stock`;
+
+});
+
+</script>
+
+<!-- GALLERY -->
+
+<script>
+
+function setActive(el){
+
+  document
+    .querySelectorAll(".thumb")
+    .forEach(t => t.classList.remove("active"));
+
+  if(el){
+    el.classList.add("active");
+  }
+
+}
+
+function showImage(el, src){
+
+  setActive(el);
+
+  document.getElementById("mainMedia").innerHTML = `
+
+    <img
+      src="${src}"
+      style="opacity:0"
+      onload="this.style.opacity=1"
+    >
+
+  `;
+
+}
+
+function showVideo(el){
+
+  setActive(el);
+
+  document.getElementById("mainMedia").innerHTML = `
+
+    <video
+      width="100%"
+      height="100%"
+      controls
+      autoplay
+    >
+
+      <source
+        src="assets/product-video.mp4"
+        type="video/mp4"
+      >
+
+    </video>
+
+  `;
+
+}
+
+</script>
+
+</body>
+</html>
 
