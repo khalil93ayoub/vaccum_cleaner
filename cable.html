@@ -53,7 +53,7 @@ header{
 }
 
 .logo{
-  height:58px;
+  height:50px;
   width:auto;
   object-fit:contain;
   transition:0.25s ease;
@@ -104,13 +104,11 @@ header{
   justify-content:center;
 }
 
-/* IMPORTANT FIX */
-
 .media img,
 .media video{
   width:100%;
   height:100%;
-  object-fit:contain; /* FIXED */
+  object-fit:contain;
   background:#fff;
 }
 
@@ -244,9 +242,8 @@ h1{
 @media(max-width:768px){
 
   .logo{
-  height:52px;
-  width:auto;
-}
+    height:44px;
+  }
 
   .media{
     height:360px;
@@ -272,19 +269,13 @@ h1{
 
 <header>
 
-  <a href="index.html" class="logo-link">
+  <div class="logo-wrap">
+    <a href="index.html" class="logo-link">
+      <img src="assets/novara-icon.png" class="logo">
+    </a>
+  </div>
 
-    <img
-      src="assets/novara-icon.png"
-      class="logo"
-    >
-
-  </a>
-
-  <button
-    id="buyBtnTop"
-    class="top-btn"
-  >
+  <button id="buyBtnTop" class="top-btn">
     Buy Now
   </button>
 
@@ -294,32 +285,12 @@ h1{
 
 <div class="container">
 
-  <!-- MEDIA -->
+  <div class="media" id="mainMedia">
 
-  <div 
-    class="media"
-    id="mainMedia"
-  >
+    <div onclick="showVideo()" style="width:100%; height:100%; position:relative; cursor:pointer;">
 
-    <div
-      onclick="showVideo()"
-      style="
-        width:100%;
-        height:100%;
-        position:relative;
-        cursor:pointer;
-      "
-    >
-
-      <video
-        width="100%"
-        height="100%"
-        preload="metadata"
-      >
-        <source 
-          src="assets/cable-video.mp4"
-          type="video/mp4"
-        >
+      <video width="100%" height="100%" preload="metadata">
+        <source src="assets/cable-video.mp4" type="video/mp4">
       </video>
 
       <div class="play">▶</div>
@@ -328,73 +299,39 @@ h1{
 
   </div>
 
-  <!-- THUMBS -->
-
   <div class="thumbs">
 
-    <!-- VIDEO -->
-
-    <div 
-      class="thumb active"
-      onclick="showVideo(this)"
-    >
+    <div class="thumb active" onclick="showVideo(this)">
       <img src="assets/cable-thumb.jpg">
     </div>
 
-    <!-- IMAGES -->
-
-    <div 
-      class="thumb"
-      onclick="showImage(this,'assets/cable1.jpg')"
-    >
+    <div class="thumb" onclick="showImage(this,'assets/cable1.jpg')">
       <img src="assets/cable1.jpg">
     </div>
 
-    <div 
-      class="thumb"
-      onclick="showImage(this,'assets/cable2.jpg')"
-    >
+    <div class="thumb" onclick="showImage(this,'assets/cable2.jpg')">
       <img src="assets/cable2.jpg">
     </div>
 
-    <div 
-      class="thumb"
-      onclick="showImage(this,'assets/cable3.jpg')"
-    >
+    <div class="thumb" onclick="showImage(this,'assets/cable3.jpg')">
       <img src="assets/cable3.jpg">
     </div>
 
-    <div 
-      class="thumb"
-      onclick="showImage(this,'assets/cable4.jpg')"
-    >
+    <div class="thumb" onclick="showImage(this,'assets/cable4.jpg')">
       <img src="assets/cable4.jpg">
     </div>
 
   </div>
 
-  <!-- CONTENT -->
-
   <div class="panel">
 
-    <h1>
-      240W Fast Charging Cable
-    </h1>
+    <h1>240W Fast Charging Cable</h1>
 
-    <div class="price">
-      8,99 €
-    </div>
+    <div class="price">8,99 €</div>
 
-    <div id="stockText">
-      Loading...
-    </div>
+    <div id="stockText">Loading...</div>
 
-    <button
-      id="buyBtn"
-      class="cta"
-    >
-      Buy Now
-    </button>
+    <button id="buyBtn" class="cta">Buy Now</button>
 
     <div class="info">
       ✔ 240W Super Fast Charging<br>
@@ -405,27 +342,21 @@ h1{
     </div>
 
     <div class="desc">
-
       High-performance 240W charging cable designed for ultra-fast charging and stable data transfer.
-
       Compatible with smartphones, tablets, laptops, gaming devices, printers, and more.
-
       Features a premium braided design, rotating elbow connector, and integrated LED display for real-time power monitoring.
-
     </div>
 
   </div>
 
 </div>
 
-<!-- FIREBASE -->
+<!-- Firebase + Scripts remain unchanged -->
 
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
 <script>
-
 const firebaseConfig = {
   apiKey: "AIzaSyDBYtMrRsnfHS8QMz8UgMjVmrBJ92siSbU",
   authDomain: "vacuum-cleaner-e8857.firebaseapp.com",
@@ -433,23 +364,14 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.firestore();
-
 </script>
 
-<!-- BUY -->
-
 <script>
-
 async function handleBuy(){
-
   try{
-
     const ref = db.collection("product").doc("cable");
-
     const doc = await ref.get();
-
     const stock = doc.data().stock;
 
     if(stock <= 0){
@@ -460,87 +382,48 @@ async function handleBuy(){
       "https://buy.stripe.com/6oU4gzgqM1vc0r95dtcIE02";
 
   }catch(e){
-
     alert("Error");
-
   }
-
 }
 
 document.getElementById("buyBtn").onclick = handleBuy;
 document.getElementById("buyBtnTop").onclick = handleBuy;
-
 </script>
 
-<!-- STOCK -->
-
 <script>
-
 db.collection("product")
 .doc("cable")
 .onSnapshot((doc)=>{
-
   const stock = doc.data().stock;
 
   document.getElementById("stockText").innerText =
-    stock > 0
-      ? `In stock: ${stock}`
-      : `Out of stock`;
-
+    stock > 0 ? `In stock: ${stock}` : `Out of stock`;
 });
-
 </script>
 
-<!-- GALLERY -->
-
 <script>
-
 function setActive(el){
-
-  document
-    .querySelectorAll(".thumb")
+  document.querySelectorAll(".thumb")
     .forEach(t => t.classList.remove("active"));
 
   if(el){
     el.classList.add("active");
   }
-
 }
 
 function showImage(el,src){
-
   setActive(el);
-
-  document.getElementById("mainMedia").innerHTML = `
-
-    <img src="${src}">
-
-  `;
-
+  document.getElementById("mainMedia").innerHTML = `<img src="${src}">`;
 }
 
 function showVideo(el){
-
   setActive(el);
-
   document.getElementById("mainMedia").innerHTML = `
-
-    <video
-      width="100%"
-      height="100%"
-      controls
-      autoplay
-    >
-      <source
-        src="assets/cable-video.mp4"
-        type="video/mp4"
-      >
+    <video width="100%" height="100%" controls autoplay>
+      <source src="assets/cable-video.mp4" type="video/mp4">
     </video>
-
   `;
-
 }
-
 </script>
 
 </body>
