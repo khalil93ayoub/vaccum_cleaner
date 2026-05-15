@@ -59,7 +59,8 @@ footer{
   }
 
   .logo{
-    height:52px;
+    height:42px;
+    transform:scale(2.1);
   }
 
   .section-title{
