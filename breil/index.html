@@ -7,105 +7,446 @@
 <title>NOVARA | Bow Shot Chronograph</title>
 
 <link rel="stylesheet" href="../css/base.css">
-<link rel="stylesheet" href="../css/luxury.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
 
+<style>
+
+/* LUXURY PAGE */
+
+body{
+  background:#070707;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* HEADER */
+
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:999;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:20px 26px;
+
+  background:rgba(0,0,0,0.35);
+  backdrop-filter:blur(14px);
+}
+
+.logo-link{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
+}
+
+.logo{
+  height:48px;
+  width:48px;
+  object-fit:contain;
+
+  filter:
+    brightness(0)
+    invert(1)
+    drop-shadow(0 0 12px rgba(255,255,255,0.25));
+
+  transition:0.25s ease;
+}
+
+.logo:hover{
+  transform:scale(1.06);
+}
+
+.top-btn{
+  border:none;
+  background:#c8a96b;
+  color:#111;
+
+  padding:13px 24px;
+  border-radius:999px;
+
+  font-weight:600;
+  font-size:15px;
+
+  cursor:pointer;
+
+  transition:0.25s;
+}
+
+.top-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  height:100vh;
+  width:100%;
+  overflow:hidden;
+}
+
+.hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:brightness(0.55);
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+    to top,
+    rgba(0,0,0,0.92),
+    rgba(0,0,0,0.2)
+  );
+}
+
+.hero-content{
+  position:absolute;
+  bottom:90px;
+  left:40px;
+  right:40px;
+}
+
+.hero-label{
+  color:#c8a96b;
+  font-size:14px;
+  letter-spacing:4px;
+  margin-bottom:18px;
+}
+
+.hero-title{
+  font-size:72px;
+  line-height:0.95;
+  font-weight:700;
+  margin-bottom:22px;
+}
+
+.hero-sub{
+  max-width:520px;
+  color:#d0d0d0;
+  line-height:1.8;
+  font-size:17px;
+}
+
+/* BUY CARD */
+
+.buy-card{
+  position:relative;
+
+  margin:-70px auto 0;
+  width:92%;
+  max-width:1150px;
+
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(18px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  border-radius:34px;
+
+  padding:34px;
+
+  z-index:10;
+}
+
+.buy-grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+
+.buy-title{
+  font-size:44px;
+  margin-bottom:12px;
+}
+
+.buy-desc{
+  color:#bcbcbc;
+  line-height:1.8;
+  font-size:15px;
+}
+
+.buy-right{
+  text-align:right;
+}
+
+.price{
+  font-size:52px;
+  font-weight:700;
+  color:#c8a96b;
+  margin-bottom:10px;
+}
+
+.stock{
+  color:#aaa;
+  margin-bottom:20px;
+}
+
+.cta{
+  border:none;
+  background:#c8a96b;
+  color:#111;
+
+  padding:18px 34px;
+
+  border-radius:999px;
+
+  font-size:16px;
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:0.25s;
+}
+
+.cta:hover{
+  transform:translateY(-2px);
+}
+
+/* GALLERY */
+
+.gallery{
+  padding:90px 22px 20px;
+}
+
+.section-title{
+  font-size:42px;
+  margin-bottom:28px;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.gallery-grid img{
+  width:100%;
+  border-radius:30px;
+  background:#111;
+}
+
+/* FEATURES */
+
+.features{
+  padding:70px 22px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.feature-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.feature{
+  background:#101010;
+  border:1px solid #1e1e1e;
+  border-radius:28px;
+  padding:32px;
+}
+
+.feature-icon{
+  font-size:34px;
+  margin-bottom:18px;
+}
+
+.feature h3{
+  font-size:28px;
+  margin-bottom:14px;
+}
+
+.feature p{
+  color:#b5b5b5;
+  line-height:1.8;
+}
+
+/* SPECS */
+
+.specs{
+  padding:0 22px 90px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.spec-box{
+  background:#101010;
+  border-radius:28px;
+  overflow:hidden;
+  border:1px solid #1e1e1e;
+}
+
+.spec-row{
+  display:flex;
+  justify-content:space-between;
+
+  padding:22px 26px;
+
+  border-bottom:1px solid #1f1f1f;
+}
+
+.spec-row:last-child{
+  border-bottom:none;
+}
+
+.spec-row span:first-child{
+  color:#999;
+}
+
+/* FOOTER */
+
+footer{
+  padding:40px 20px;
+  text-align:center;
+  color:#777;
+  border-top:1px solid #161616;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .hero-title{
+    font-size:46px;
+  }
+
+  .hero-content{
+    left:24px;
+    right:24px;
+    bottom:70px;
+  }
+
+  .buy-grid{
+    grid-template-columns:1fr;
+  }
+
+  .buy-right{
+    text-align:left;
+  }
+
+  .buy-title{
+    font-size:34px;
+  }
+
+  .price{
+    font-size:42px;
+  }
+
+  .gallery-grid{
+    grid-template-columns:1fr;
+  }
+
+  .feature-grid{
+    grid-template-columns:1fr;
+  }
+
+  .section-title{
+    font-size:34px;
+  }
+
+  .logo{
+    height:48px;
+    width:48px;
+  }
+
+}
+
+</style>
 </head>
 
-<body class="luxury-page">
+<body>
 
-<!-- HEADER -->
-
-<header class="luxury-header">
+<header>
 
   <a href="../" class="logo-link">
 
     <img
       src="../assets/novara-icon.png"
-      class="luxury-logo"
-      alt="NOVARA"
+      class="logo"
     >
 
   </a>
 
   <button
     id="buyBtnTop"
-    class="luxury-top-btn"
+    class="top-btn"
   >
     Buy Now
   </button>
 
 </header>
 
-<!-- HERO -->
+<section class="hero">
 
-<section class="luxury-hero">
+  <img src="../assets/breil-hero.jpg">
 
-  <img
-    src="../assets/breil-hero.jpg"
-    class="luxury-hero-image"
-    alt="Breil Bow Shot"
-  >
+  <div class="hero-overlay"></div>
 
-  <div class="luxury-overlay"></div>
+  <div class="hero-content">
 
-  <div class="luxury-hero-content">
-
-    <div class="luxury-label">
+    <div class="hero-label">
       ITALIAN SPORT CHRONOGRAPH
     </div>
 
-    <h1 class="luxury-title">
+    <div class="hero-title">
       BOW SHOT
-    </h1>
+    </div>
 
-    <p class="luxury-subtitle">
+    <div class="hero-sub">
       A bold chronograph crafted with gold-tone
       stainless steel, black detailing and
       precision-inspired performance for modern
       everyday luxury.
-    </p>
+    </div>
 
   </div>
 
 </section>
 
-<!-- BUY CARD -->
+<section class="buy-card">
 
-<section class="luxury-buy-card">
-
-  <div class="luxury-buy-grid">
+  <div class="buy-grid">
 
     <div>
 
-      <h2 class="luxury-buy-title">
+      <div class="buy-title">
         Breil Bow Shot Chronograph
-      </h2>
+      </div>
 
-      <p class="luxury-buy-desc">
+      <div class="buy-desc">
         Featuring a premium IP gold stainless steel
         case, black chronograph dial and 100m water
         resistance, the Bow Shot combines sporty
         performance with refined Italian aesthetics.
-      </p>
+      </div>
 
     </div>
 
-    <div class="luxury-buy-right">
+    <div class="buy-right">
 
-      <div class="luxury-price">
+      <div class="price">
         110€
       </div>
 
-      <div
-        class="luxury-stock"
-        id="stockText"
-      >
+      <div class="stock" id="stockText">
         Loading...
       </div>
 
       <button
         id="buyBtn"
-        class="luxury-cta"
+        class="cta"
       >
         Buy Now
       </button>
@@ -115,277 +456,3 @@
   </div>
 
 </section>
-
-<!-- GALLERY -->
-
-<section class="luxury-gallery">
-
-  <h2 class="luxury-section-title">
-    Details
-  </h2>
-
-  <div class="luxury-gallery-grid">
-
-    <img
-      src="../assets/breil1.jpg"
-      alt=""
-    >
-
-    <img
-      src="../assets/breil2.jpg"
-      alt=""
-    >
-
-    <img
-      src="../assets/breil3.jpg"
-      alt=""
-    >
-
-    <img
-      src="../assets/breil4.jpg"
-      alt=""
-    >
-
-  </div>
-
-</section>
-
-<!-- FEATURES -->
-
-<section class="luxury-features">
-
-  <h2 class="luxury-section-title">
-    Crafted for Presence
-  </h2>
-
-  <div class="luxury-feature-grid">
-
-    <div class="luxury-feature">
-
-      <div class="luxury-feature-icon">
-        ⌚
-      </div>
-
-      <h3>
-        Chronograph Precision
-      </h3>
-
-      <p>
-        Built with reliable quartz chronograph
-        movement for precise timing and sporty
-        everyday performance.
-      </p>
-
-    </div>
-
-    <div class="luxury-feature">
-
-      <div class="luxury-feature-icon">
-        🛡️
-      </div>
-
-      <h3>
-        Gold Steel Construction
-      </h3>
-
-      <p>
-        Premium IP gold stainless steel bracelet
-        and case with bold masculine detailing.
-      </p>
-
-    </div>
-
-    <div class="luxury-feature">
-
-      <div class="luxury-feature-icon">
-        🌊
-      </div>
-
-      <h3>
-        100M Water Resistance
-      </h3>
-
-      <p>
-        Designed for everyday durability with
-        reliable resistance against water exposure.
-      </p>
-
-    </div>
-
-    <div class="luxury-feature">
-
-      <div class="luxury-feature-icon">
-        🇮🇹
-      </div>
-
-      <h3>
-        Italian Design Identity
-      </h3>
-
-      <p>
-        Distinctive styling inspired by modern
-        Italian sport luxury aesthetics.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- SPECS -->
-
-<section class="luxury-specs">
-
-  <h2 class="luxury-section-title">
-    Specifications
-  </h2>
-
-  <div class="luxury-spec-box">
-
-    <div class="luxury-spec-row">
-      <span>Movement</span>
-      <span>Quartz Chronograph</span>
-    </div>
-
-    <div class="luxury-spec-row">
-      <span>Case Size</span>
-      <span>43mm</span>
-    </div>
-
-    <div class="luxury-spec-row">
-      <span>Case Material</span>
-      <span>IP Gold Stainless Steel</span>
-    </div>
-
-    <div class="luxury-spec-row">
-      <span>Dial</span>
-      <span>Black Chronograph</span>
-    </div>
-
-    <div class="luxury-spec-row">
-      <span>Glass</span>
-      <span>Mineral Crystal</span>
-    </div>
-
-    <div class="luxury-spec-row">
-      <span>Water Resistance</span>
-      <span>100M</span>
-    </div>
-
-    <div class="luxury-spec-row">
-      <span>Bracelet</span>
-      <span>Gold Steel Bracelet</span>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FOOTER -->
-
-<footer class="luxury-footer">
-
-  © NOVARA — Modern Essentials
-
-</footer>
-
-<!-- FIREBASE -->
-
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-
-<script>
-
-const firebaseConfig = {
-  apiKey: "AIzaSyDBYtMrRsnfHS8QMz8UgMjVmrBJ92siSbU",
-  authDomain: "vacuum-cleaner-e8857.firebaseapp.com",
-  projectId: "vacuum-cleaner-e8857"
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
-
-</script>
-
-<!-- BUY -->
-
-<script>
-
-async function handleBuy(){
-
-  try{
-
-    const ref =
-      db.collection("product")
-      .doc("breil");
-
-    const doc = await ref.get();
-
-    const stock =
-      doc.data().stock;
-
-    if(stock <= 0){
-
-      return alert("Sold Out");
-
-    }
-
-    document.getElementById(
-      "buyBtn"
-    ).innerText = "Processing...";
-
-    document.getElementById(
-      "buyBtnTop"
-    ).innerText = "Processing...";
-
-    window.location.href =
-      "https://buy.stripe.com/8x2eVd5M8b5M5LtgWbcIE03";
-
-  }catch(e){
-
-    alert("Error");
-
-  }
-
-}
-
-document.getElementById(
-  "buyBtn"
-).onclick = handleBuy;
-
-document.getElementById(
-  "buyBtnTop"
-).onclick = handleBuy;
-
-</script>
-
-<!-- STOCK -->
-
-<script>
-
-db.collection("product")
-.doc("breil")
-.onSnapshot((doc)=>{
-
-  const stock =
-    doc.data().stock;
-
-  document.getElementById(
-    "stockText"
-  ).innerText =
-
-    stock > 0
-
-    ? `In stock: ${stock}`
-
-    : `Out of stock`;
-
-});
-
-</script>
-
-</body>
-</html>
