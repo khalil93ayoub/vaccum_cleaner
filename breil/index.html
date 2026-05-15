@@ -6,15 +6,16 @@
 
 <title>NOVARA | Bow Shot Chronograph</title>
 
-<link rel="stylesheet" href="../css/base.css">
-<link rel="stylesheet" href="../css/layout.css">
-<link rel="stylesheet" href="../css/components.css">
-
 <style>
 
-/* LUXURY PAGE */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
 body{
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
   background:#070707;
   color:white;
   overflow-x:hidden;
@@ -46,14 +47,14 @@ header{
 }
 
 .logo{
-  height:48px;
-  width:48px;
+  height:42px;
+  width:42px;
   object-fit:contain;
 
   filter:
     brightness(0)
     invert(1)
-    drop-shadow(0 0 12px rgba(255,255,255,0.25));
+    drop-shadow(0 0 10px rgba(255,255,255,0.25));
 
   transition:0.25s ease;
 }
@@ -106,7 +107,7 @@ header{
   linear-gradient(
     to top,
     rgba(0,0,0,0.92),
-    rgba(0,0,0,0.2)
+    rgba(0,0,0,0.25)
   );
 }
 
@@ -138,7 +139,7 @@ header{
   font-size:17px;
 }
 
-/* BUY CARD */
+/* FLOATING CARD */
 
 .buy-card{
   position:relative;
@@ -357,8 +358,8 @@ footer{
   }
 
   .logo{
-    height:48px;
-    width:48px;
+    height:42px;
+    transform:scale(2.1);
   }
 
 }
@@ -368,16 +369,18 @@ footer{
 
 <body>
 
+<!-- HEADER -->
+
 <header>
 
-  <a href="../" class="logo-link">
+<a href="../" class="logo-link">
 
-    <img
-      src="../assets/novara-icon.png"
-      class="logo"
-    >
+  <img
+    src="../assets/novara-icon.png"
+    class="logo"
+  >
 
-  </a>
+</a>
 
   <button
     id="buyBtnTop"
@@ -387,6 +390,8 @@ footer{
   </button>
 
 </header>
+
+<!-- HERO -->
 
 <section class="hero">
 
@@ -414,6 +419,8 @@ footer{
   </div>
 
 </section>
+
+<!-- BUY CARD -->
 
 <section class="buy-card">
 
@@ -456,3 +463,244 @@ footer{
   </div>
 
 </section>
+
+<!-- GALLERY -->
+
+<section class="gallery">
+
+  <div class="section-title">
+    Details
+  </div>
+
+  <div class="gallery-grid">
+
+    <img src="../assets/breil1.jpg">
+
+    <img src="../assets/breil2.jpg">
+
+    <img src="../assets/breil3.jpg">
+
+    <img src="..assets/breil4.jpg">
+
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="features">
+
+  <div class="section-title">
+    Crafted for Presence
+  </div>
+
+  <div class="feature-grid">
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        ⌚
+      </div>
+
+      <h3>
+        Chronograph Precision
+      </h3>
+
+      <p>
+        Built with reliable quartz chronograph
+        movement for precise timing and sporty
+        everyday performance.
+      </p>
+
+    </div>
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🛡️
+      </div>
+
+      <h3>
+        Gold Steel Construction
+      </h3>
+
+      <p>
+        Premium IP gold stainless steel bracelet
+        and case with bold masculine detailing.
+      </p>
+
+    </div>
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🌊
+      </div>
+
+      <h3>
+        100M Water Resistance
+      </h3>
+
+      <p>
+        Designed for everyday durability with
+        reliable resistance against water exposure.
+      </p>
+
+    </div>
+
+    <div class="feature">
+
+      <div class="feature-icon">
+        🇮🇹
+      </div>
+
+      <h3>
+        Italian Design Identity
+      </h3>
+
+      <p>
+        Distinctive styling inspired by modern
+        Italian sport luxury aesthetics.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- SPECS -->
+
+<section class="specs">
+
+  <div class="section-title">
+    Specifications
+  </div>
+
+  <div class="spec-box">
+
+    <div class="spec-row">
+      <span>Movement</span>
+      <span>Quartz Chronograph</span>
+    </div>
+
+    <div class="spec-row">
+      <span>Case Size</span>
+      <span>43mm</span>
+    </div>
+
+    <div class="spec-row">
+      <span>Case Material</span>
+      <span>IP Gold Stainless Steel</span>
+    </div>
+
+    <div class="spec-row">
+      <span>Dial</span>
+      <span>Black Chronograph</span>
+    </div>
+
+    <div class="spec-row">
+      <span>Glass</span>
+      <span>Mineral Crystal</span>
+    </div>
+
+    <div class="spec-row">
+      <span>Water Resistance</span>
+      <span>100M</span>
+    </div>
+
+    <div class="spec-row">
+      <span>Bracelet</span>
+      <span>Gold Steel Bracelet</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+  © NOVARA — Modern Essentials
+
+</footer>
+
+<!-- FIREBASE -->
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDBYtMrRsnfHS8QMz8UgMjVmrBJ92siSbU",
+  authDomain: "vacuum-cleaner-e8857.firebaseapp.com",
+  projectId: "vacuum-cleaner-e8857"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+</script>
+
+<!-- BUY -->
+
+<script>
+
+async function handleBuy(){
+
+  try{
+
+    const ref = db.collection("product").doc("breil");
+
+    const doc = await ref.get();
+
+    const stock = doc.data().stock;
+
+    if(stock <= 0){
+      return alert("Sold Out");
+    }
+
+    window.location.href =
+      "https://buy.stripe.com/8x2eVd5M8b5M5LtgWbcIE03";
+
+  }catch(e){
+
+    alert("Error");
+
+  }
+
+}
+
+document.getElementById("buyBtn").onclick =
+  handleBuy;
+
+document.getElementById("buyBtnTop").onclick =
+  handleBuy;
+
+</script>
+
+<!-- STOCK -->
+
+<script>
+
+db.collection("product")
+.doc("breil")
+.onSnapshot((doc)=>{
+
+  const stock = doc.data().stock;
+
+  document.getElementById("stockText").innerText =
+    stock > 0
+      ? `In stock: ${stock}`
+      : `Out of stock`;
+
+});
+
+</script>
+
+</body>
+</html>
