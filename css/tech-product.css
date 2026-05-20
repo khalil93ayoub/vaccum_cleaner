@@ -1,0 +1,219 @@
+body{
+  background:#fff;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:22px 20px 60px;
+}
+
+.logo-wrap{
+  display:flex;
+  align-items:center;
+
+  width:170px;
+  overflow:hidden;
+}
+
+.logo{
+  height:68px;
+  width:auto;
+  object-fit:contain;
+}
+
+.media{
+  position:relative;
+  border-radius:24px;
+}
+
+.product-vacuum .media{
+  background:#000;
+}
+
+.product-charger .media{
+  background:#f6f6f6;
+}
+
+.product-cable .container{
+  padding:24px 18px 60px;
+}
+
+.product-cable .media{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#f7f7f7;
+}
+
+.product-cable .media img,
+.product-cable .media video{
+  background:#fff;
+}
+
+.media-trigger{
+  width:100%;
+  height:100%;
+  position:relative;
+  cursor:pointer;
+}
+
+.play{
+  position:absolute;
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%,-50%);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(0,0,0,0.6);
+  border-radius:50%;
+  color:white;
+  font-size:30px;
+}
+
+.product-vacuum .play,
+.product-charger .play{
+  padding:16px 20px;
+}
+
+.product-cable .play{
+  width:70px;
+  height:70px;
+
+  background:rgba(0,0,0,0.7);
+  color:#fff;
+  font-size:28px;
+}
+
+.panel{
+  margin-top:36px;
+}
+
+.product-title-main{
+  font-size:42px;
+  line-height:1.1;
+  margin-bottom:14px;
+}
+
+.product-cable .price{
+  font-size:42px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.subtitle{
+  margin-top:12px;
+  margin-bottom:24px;
+
+  color:#555;
+  font-size:15px;
+  line-height:1.8;
+}
+
+#stockText{
+  margin-top:10px;
+  margin-bottom:18px;
+
+  color:#666;
+  font-size:15px;
+}
+
+.info{
+  margin-top:22px;
+
+  color:#444;
+  font-size:15px;
+  line-height:1.9;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+
+  margin-top:34px;
+}
+
+.feature{
+  padding:16px;
+
+  background:#f5f5f5;
+  border-radius:16px;
+  font-size:14px;
+}
+
+.specs{
+  margin-top:48px;
+}
+
+.specs h2{
+  font-size:30px;
+  margin-bottom:20px;
+}
+
+.spec-row{
+  display:flex;
+  justify-content:space-between;
+
+  padding:18px 0;
+
+  border-bottom:1px solid #eee;
+  font-size:15px;
+}
+
+.desc{
+  margin-top:34px;
+
+  color:#333;
+  font-size:15px;
+  line-height:1.8;
+}
+
+.gallery-media{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+@media(max-width:768px){
+  .container{
+    padding:18px 14px 45px;
+  }
+
+  .logo{
+    height:50px;
+  }
+
+  .product-title-main{
+    font-size:30px;
+  }
+
+  .price{
+    font-size:30px;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+  .product-cable .media{
+    height:360px;
+    border-radius:22px;
+  }
+
+  .product-cable .product-title-main,
+  .product-cable .price{
+    font-size:34px;
+  }
+}
